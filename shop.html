@@ -1,309 +1,353 @@
 <!DOCTYPE html>
-  <html lang="en">
-  <head>
+<html lang="en">
+<head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>House of 8 — Shop</title>
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <title>High-End Furniture — House of 8</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
-  </head>
-  <body>
+  <link rel="stylesheet" href="shop.css">
+</head>
+<body class="page-shop">
 
   <!-- ===================== HEADER ===================== -->
   <header class="header">
-  <button class="hamburger" aria-label="Open menu">
-  <span></span>
-  <span></span>
-  <span></span>
-  </button>
-
-  <a href="index.html" class="logo">
-  <img src="assets/logo.svg" alt="House of 8" class="logo-svg">
-  </a>
-
-  <a href="cart.html" class="basket-link">
-  <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
-  <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
-  <line x1="3" y1="6" x2="21" y2="6"/>
-  <path d="M16 10a4 4 0 01-8 0"/>
-  </svg>
-  Your Basket
-</a>
+    <button class="hamburger" aria-label="Open menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+    <a href="index.html" class="logo">
+      <img src="assets/logo.svg" alt="House of 8" class="logo-svg">
+    </a>
+    <a href="#" class="basket-link">
+      <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M6 2L3 6v14a2 2 0 002 2h14a2 2 0 002-2V6l-3-4z"/>
+        <line x1="3" y1="6" x2="21" y2="6"/>
+        <path d="M16 10a4 4 0 01-8 0"/>
+      </svg>
+      Your Basket
+    </a>
   </header>
 
-  <!-- ===================== SHOP HERO ===================== -->
-  <section class="shop-hero">
-  <img
-  src="assets/2/Group 31924.png"
-  alt=""
-  class="shop-hero-branch"
-  aria-hidden="true"
-  >
-  <div class="shop-hero-inner">
-  <p class="shop-hero-eyebrow">House of 8 Collection</p>
-  <h1 class="shop-hero-title">High-End Furniture</h1>
-  <p class="shop-hero-sub">
-  Explore pieces crafted with exquisite taste, unparalleled service
-and unmatched quality — designed to bring timeless comfort into your home.
-  </p>
-</div>
-</section>
+  <!-- ===================== SHOP BANNER ===================== -->
+  <section class="shop-banner">
+    <!-- Leaves — left of container, overflows -->
+    <img
+      src="assets/2/u3851352797_a_single_ruscus_stem_with_pointed_leaves_loose_so_9d8289cb-e609-4197-a420-f1dab77214c8_02.png"
+      alt=""
+      class="shop-banner__leaves"
+      aria-hidden="true"
+    >
 
-<!-- ===================== SHOP CATALOG ===================== -->
-<section class="shop-catalog">
-<div class="section-header">
-<span class="dash">&mdash;</span>
-<h2 class="section-title section-title--gold">Our Collection</h2>
-  <span class="dash">&mdash;</span>
-  </div>
+    <!-- Rounded #f1f1f1 container (Rectangle 74: 1640×307, rx=30) -->
+    <div class="shop-banner__container">
 
-  <div class="shop-toolbar">
-  <div class="shop-filters" id="shopFilters">
-  <button class="filter-btn filter-btn--active" data-filter="all">See All</button>
-  <button class="filter-btn" data-filter="bed">Bed</button>
-  <button class="filter-btn" data-filter="arm-chair">Arm Chair</button>
-  <button class="filter-btn" data-filter="settee">Settee</button>
-  <button class="filter-btn" data-filter="coffee-table">Coffee Table</button>
-  <button class="filter-btn" data-filter="accessories">Accessories</button>
-  </div>
+      <!-- Text block — left-aligned inside container -->
+      <div class="shop-banner__text">
+        <h1 class="shop-banner__heading">High-End Furniture</h1>
+        <p class="shop-banner__sub">What matters to us is timeless design,<br>sustainable quality and ecological awareness.</p>
+      </div>
 
-  <div class="sort-by">
-  <label for="sortSelect">Sort By</label>
-  <select id="sortSelect">
-  <option value="default">Featured</option>
-  <option value="low-high">Price: Low to High</option>
-<option value="high-low">Price: High to Low</option>
-</select>
-</div>
-</div>
+      <!-- Chair — right side, overflows top and bottom of container -->
+      <img
+        src="assets/2/Group 31934.png"
+        alt="Arm Chair"
+        class="shop-banner__chair"
+      >
 
-<div class="product-grid" id="productGrid">
-
-<article class="product-card" data-category="coffee-table" data-price="55000">
-<a href="product.html">
-  <div class="product-img-wrap">
-  <img src="assets/2/Mask Group 41.png" alt="Step Coffee Table">
-  </div>
-  </a>
-  <div class="product-info">
-  <h4 class="product-name">Step Coffee Table</h4>
-<p class="product-material">Oak Wood</p>
-<div class="product-rating" aria-label="Rated 4.5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-  <p class="product-price">PKR 55,000</p>
-  <div class="product-actions">
-  <a href="product.html" class="view-details">View details</a>
-  <button class="btn btn--black btn--sm">Order Now</button>
-  </div>
-  </div>
-  </article>
-
-  <article class="product-card" data-category="accessories" data-price="40000">
-  <a href="product.html">
-  <div class="product-img-wrap">
-  <img src="assets/2/Group 31923.png" alt="Bowl Stack Side Table">
-  </div>
-  </a>
-  <div class="product-info">
-  <h4 class="product-name">Bowl Stack Side Table</h4>
-<p class="product-material">Travertine Stone</p>
-  <div class="product-rating" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-  <p class="product-price">PKR 40,000</p>
-  <div class="product-actions">
-  <a href="product.html" class="view-details">View details</a>
-  <button class="btn btn--black btn--sm">Order Now</button>
-  </div>
-  </div>
-  </article>
-
-  <article class="product-card" data-category="settee" data-price="45000">
-  <a href="product.html">
-  <div class="product-img-wrap">
-  <img src="assets/Group 31915.png" alt="Sphere Side Table">
-  </div>
-  </a>
-  <div class="product-info">
-  <h4 class="product-name">Sphere Side Table</h4>
-<p class="product-material">Travertine Stone</p>
-<div class="product-rating" aria-label="Rated 4 out of 5">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-  <p class="product-price">PKR 45,000</p>
-  <div class="product-actions">
-  <a href="product.html" class="view-details">View details</a>
-  <button class="btn btn--black btn--sm">Order Now</button>
-  </div>
-  </div>
-  </article>
-
-  <article class="product-card" data-category="bed" data-price="38000">
-  <a href="product.html">
-  <div class="product-img-wrap">
-  <img src="assets/Group 31916.png" alt="Ring Bowl Table">
-  </div>
-  </a>
-  <div class="product-info">
-  <h4 class="product-name">Ring Bowl Table</h4>
-<p class="product-material">Travertine Stone</p>
-<div class="product-rating" aria-label="Rated 4.5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-  <p class="product-price">PKR 38,000</p>
-  <div class="product-actions">
-  <a href="product.html" class="view-details">View details</a>
-  <button class="btn btn--black btn--sm">Order Now</button>
-  </div>
-  </div>
-  </article>
-
-  <article class="product-card" data-category="arm-chair" data-price="42000">
-  <a href="product.html">
-  <div class="product-img-wrap">
-  <img src="assets/e52be52a-a283-4cae-a816-d9175e7d4820.png" alt="Stone Side Table">
-  </div>
-  </a>
-  <div class="product-info">
-  <h4 class="product-name">Stone Side Table</h4>
-<p class="product-material">Natural Stone</p>
-<div class="product-rating" aria-label="Rated 4 out of 5">&#9733;&#9733;&#9733;&#9733;&#9734;</div>
-  <p class="product-price">PKR 42,000</p>
-  <div class="product-actions">
-  <a href="product.html" class="view-details">View details</a>
-  <button class="btn btn--black btn--sm">Order Now</button>
-  </div>
-  </div>
-  </article>
-
-  <article class="product-card" data-category="coffee-table" data-price="62000">
-  <a href="product.html">
-  <div class="product-img-wrap">
-  <img src="assets/Mask Group 29.png" alt="Raw Stone Coffee Table">
-  </div>
-  </a>
-  <div class="product-info">
-  <h4 class="product-name">Raw Stone Coffee Table</h4>
-  <p class="product-material">Natural Stone</p>
-  <div class="product-rating" aria-label="Rated 5 out of 5">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
-  <p class="product-price">PKR 62,000</p>
-  <div class="product-actions">
-  <a href="product.html" class="view-details">View details</a>
-  <button class="btn btn--black btn--sm">Order Now</button>
-  </div>
-  </div>
-  </article>
-
-  </div>
+    </div>
   </section>
 
-  <!-- ===================== DETAILED COMFORT — INTERIOR ===================== -->
-  <section class="comfort-interior">
-  <div
-  class="comfort-interior-bg"
-  style="background-image: url('assets/Group 31914.png')"
-  role="img"
-  aria-label="Luxury interior living room"
-  ></div>
-  <div class="comfort-interior-content">
-  <h3 class="comfort-heading comfort-heading--lg">Detailed Comfort.</h3>
-  <p class="comfort-body comfort-body--light">
-  We pride ourselves in sourcing the finest leathers and woods, designing
-  every detail of every piece. With each custom-made sofa, we create
-luxuriously comfortable sofas.
-  </p>
-  <a href="#" class="btn btn--outline">View Portfolio &rarr;</a>
+  <!-- ===================== FILTER BAR ===================== -->
+  <div class="filter-bar">
+    <div class="filter-bar__inner">
+      <div class="filter-bar__categories">
+        <button class="filter-btn filter-btn--active">See All</button>
+        <button class="filter-btn">Bed</button>
+        <button class="filter-btn">Arm Chair</button>
+        <button class="filter-btn">Sette</button>
+        <button class="filter-btn">Coffee Table</button>
+        <button class="filter-btn">Accessories</button>
+      </div>
+      <div class="filter-bar__sort">
+        <span class="sort-label">Sort By</span>
+        <button class="sort-dropdown">
+          Low to High
+          <svg width="12" height="8" viewBox="0 0 12 8" fill="none">
+            <path d="M1 1L6 6L11 1" stroke="#292A2E" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+    </div>
   </div>
-  <img
-  src="assets/Mask Group 35.png"
-  alt="Stepped travertine coffee table"
-  class="comfort-interior-table"
-  >
+
+  <!-- ===================== PRODUCT GRID ===================== -->
+  <main class="shop-grid-section">
+    <div class="shop-grid">
+
+      <article class="product-card-2">
+        <div class="product-card-2__img">
+          <img src="assets/2/Mask Group 41.png" alt="Arm Chair">
+        </div>
+        <div class="product-card-2__body">
+          <div class="product-card-2__dots">
+            <span class="pc-dot pc-dot--active"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+          </div>
+          <div class="product-card-2__info">
+            <h4 class="product-card-2__name">Arm Chair</h4>
+            <div class="product-card-2__rating">
+              <span class="pc-stars">★★★★★</span>
+              <span class="pc-rating-count">(5)</span>
+            </div>
+            <p class="product-card-2__price">PKR 45,000</p>
+          </div>
+          <div class="product-card-2__actions">
+            <a href="#" class="product-card-2__view">View details →</a>
+            <button class="product-card-2__order">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card-2">
+        <div class="product-card-2__img">
+          <img src="assets/2/Group 31923.png" alt="Side Table">
+        </div>
+        <div class="product-card-2__body">
+          <div class="product-card-2__dots">
+            <span class="pc-dot pc-dot--active"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+          </div>
+          <div class="product-card-2__info">
+            <h4 class="product-card-2__name">Side Table</h4>
+            <div class="product-card-2__rating">
+              <span class="pc-stars">★★★★★</span>
+              <span class="pc-rating-count">(5)</span>
+            </div>
+            <p class="product-card-2__price">PKR 38,000</p>
+          </div>
+          <div class="product-card-2__actions">
+            <a href="#" class="product-card-2__view">View details →</a>
+            <button class="product-card-2__order">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card-2">
+        <div class="product-card-2__img">
+          <img src="assets/2/Group 31924.png" alt="Coffee Table">
+        </div>
+        <div class="product-card-2__body">
+          <div class="product-card-2__dots">
+            <span class="pc-dot pc-dot--active"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+          </div>
+          <div class="product-card-2__info">
+            <h4 class="product-card-2__name">Coffee Table</h4>
+            <div class="product-card-2__rating">
+              <span class="pc-stars">★★★★★</span>
+              <span class="pc-rating-count">(5)</span>
+            </div>
+            <p class="product-card-2__price">PKR 55,000</p>
+          </div>
+          <div class="product-card-2__actions">
+            <a href="#" class="product-card-2__view">View details →</a>
+            <button class="product-card-2__order">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card-2">
+        <div class="product-card-2__img">
+          <img src="assets/2/Mask Group 41.png" alt="Arm Chair">
+        </div>
+        <div class="product-card-2__body">
+          <div class="product-card-2__dots">
+            <span class="pc-dot pc-dot--active"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+          </div>
+          <div class="product-card-2__info">
+            <h4 class="product-card-2__name">Arm Chair</h4>
+            <div class="product-card-2__rating">
+              <span class="pc-stars">★★★★★</span>
+              <span class="pc-rating-count">(5)</span>
+            </div>
+            <p class="product-card-2__price">PKR 45,000</p>
+          </div>
+          <div class="product-card-2__actions">
+            <a href="#" class="product-card-2__view">View details →</a>
+            <button class="product-card-2__order">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card-2">
+        <div class="product-card-2__img">
+          <img src="assets/2/Group 31923.png" alt="Side Table">
+        </div>
+        <div class="product-card-2__body">
+          <div class="product-card-2__dots">
+            <span class="pc-dot pc-dot--active"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+          </div>
+          <div class="product-card-2__info">
+            <h4 class="product-card-2__name">Side Table</h4>
+            <div class="product-card-2__rating">
+              <span class="pc-stars">★★★★★</span>
+              <span class="pc-rating-count">(5)</span>
+            </div>
+            <p class="product-card-2__price">PKR 38,000</p>
+          </div>
+          <div class="product-card-2__actions">
+            <a href="#" class="product-card-2__view">View details →</a>
+            <button class="product-card-2__order">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+      <article class="product-card-2">
+        <div class="product-card-2__img">
+          <img src="assets/2/Group 31924.png" alt="Coffee Table">
+        </div>
+        <div class="product-card-2__body">
+          <div class="product-card-2__dots">
+            <span class="pc-dot pc-dot--active"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+            <span class="pc-dot"></span>
+          </div>
+          <div class="product-card-2__info">
+            <h4 class="product-card-2__name">Coffee Table</h4>
+            <div class="product-card-2__rating">
+              <span class="pc-stars">★★★★★</span>
+              <span class="pc-rating-count">(5)</span>
+            </div>
+            <p class="product-card-2__price">PKR 55,000</p>
+          </div>
+          <div class="product-card-2__actions">
+            <a href="#" class="product-card-2__view">View details →</a>
+            <button class="product-card-2__order">Order Now</button>
+          </div>
+        </div>
+      </article>
+
+    </div>
+  </main>
+
+  <!-- ===================== DETAILED COMFORT ===================== -->
+  <section class="comfort-detail">
+
+    <!-- "LUXURY" watermark — Luxury.svg: 643px Nigelina, #47593d opacity 0.07 -->
+    <div class="comfort-detail__watermark" aria-hidden="true">LUXURY</div>
+
+    <!-- Rounded container — Group 31948.png: 1639×502px, rx=30 fabric background -->
+    <div class="comfort-detail__container">
+
+      <!-- Olive branch bottom-left decoration -->
+      <!-- <img
+        src="assets/2/ChatGPT Image Aug 1, 2026, 09_18_12 PM.png"
+        alt=""
+        class="comfort-detail__leaves"
+        aria-hidden="true"
+      > -->
+
+      <!-- Text block -->
+      <div class="comfort-detail__text">
+        <h2 class="comfort-detail__heading">Detailed Comfort.</h2>
+        <p class="comfort-detail__desc">
+          We pride ourselves in sourcing the finest leathers<br>
+          and woods, designing every detail of every piece.<br>
+          With each custom-made sofa, we create<br>
+          luxuriously comfortable sofas.
+        </p>
+        <!-- View Portfolio button — Component 7–8.svg: 228×64, rx=16, #47593d + white border -->
+        <a href="#" class="comfort-detail__btn">
+          View Portfolio
+          <svg width="22" height="16" viewBox="0 0 22.024 16.405" fill="none" aria-hidden="true">
+            <path d="M58.212,181.476H40.685l5.523-5.523a.86.86,0,1,0-1.217-1.217L38,181.728a.886.886,0,0,0-.108.132c-.014.021-.024.044-.036.065a.888.888,0,0,0-.043.083.781.781,0,0,0-.027.087c-.007.025-.017.048-.022.074a.873.873,0,0,0,0,.337c.005.025.015.049.022.074a.807.807,0,0,0,.027.087.821.821,0,0,0,.043.082c.012.022.022.045.036.066a.855.855,0,0,0,.108.132l6.991,6.992a.86.86,0,1,0,1.217-1.217L40.685,183.2H58.212a.86.86,0,1,0,0-1.721Z" transform="translate(243.072 214.837) rotate(180)" fill="#fff" stroke="#fff" stroke-width="0.7"/>
+          </svg>
+        </a>
+      </div>
+
+      <!-- Sofa — Group 31943.png: overflows right + bottom of container -->
+      <img
+        src="assets/2/Group 31943.png"
+        alt="Olive Sofa"
+        class="comfort-detail__ottoman"
+      >
+
+    </div>
   </section>
 
   <!-- ===================== FOOTER ===================== -->
   <footer class="footer">
-  <img
-  src="assets/r23_Realistic_image_of_tropical_leaves_in_different_poses_wit_80d95387-c7d2-42ca-a677-9c2a2ac4d703_0 copy 22.png"
-  alt=""
-  class="footer-leaves"
-  aria-hidden="true"
-  >
-
-  <div class="footer-inner">
-  <div class="footer-brand">
-  <img src="assets/logo.svg" alt="House of 8" class="footer-logo-svg">
-  </div>
-
-  <nav class="footer-nav" aria-label="Footer navigation">
-  <div class="footer-col">
-  <h5 class="footer-col-title">Services</h5>
-  <a href="shop.html">Living</a>
-  <a href="shop.html">Dining</a>
-  <a href="shop.html">Bedroom</a>
-  <a href="shop.html">Office</a>
-  </div>
-  <div class="footer-col">
-  <h5 class="footer-col-title">Explore</h5>
-  <a href="index.html#shop">Projects</a>
-  <a href="index.html">About Us</a>
-  <a href="#">Blog</a>
-  <a href="#">Contact</a>
-  </div>
-  </nav>
-
-  <div class="footer-newsletter">
-  <p class="newsletter-heading">Join the IHI Family</p>
-<p class="newsletter-sub">
-Please fill in your details to get access to our catalog online.
-  </p>
-  <form class="newsletter-form" onsubmit="return false;">
-  <input type="email" placeholder="Your email address" aria-label="Email address">
-  <button type="submit" class="btn btn--gold">Subscribe</button>
-  </form>
-  </div>
-  </div>
-
-  <div class="footer-bottom">
-  <p class="footer-copy">Copyright Irtiqa Hassan Interiors 2023</p>
-  <div class="footer-social">
-  <a href="#" aria-label="Instagram">Instagram</a>
-  <a href="#" aria-label="Facebook">Facebook</a>
-  <a href="#" aria-label="Pinterest">Pinterest</a>
-  </div>
-  <p class="footer-uan">UAN 111-832-682</p>
-  </div>
+    <img
+      src="assets/r23_Realistic_image_of_tropical_leaves_in_different_poses_wit_80d95387-c7d2-42ca-a677-9c2a2ac4d703_0 copy 22.png"
+      alt=""
+      class="footer-leaves"
+      aria-hidden="true"
+    >
+    <div class="footer-inner">
+      <div class="footer-brand">
+        <img src="assets/2/Group 31946.svg" alt="House of 8" class="footer-logo-svg">
+      </div>
+      <nav class="footer-nav" aria-label="Footer navigation">
+        <div class="footer-col">
+          <h5 class="footer-col-title">Services</h5>
+          <a href="#">Living</a>
+          <a href="#">Dining</a>
+          <a href="#">Bedroom</a>
+          <a href="#">Office</a>
+        </div>
+        <div class="footer-col">
+          <h5 class="footer-col-title">Explore</h5>
+          <a href="#">Projects</a>
+          <a href="#">About Us</a>
+          <a href="#">Blog</a>
+          <a href="#">Contact</a>
+        </div>
+      </nav>
+      <div class="footer-newsletter">
+        <p class="newsletter-heading">Join the IHI Family</p>
+        <p class="newsletter-sub">Please fill in your details to get access to our catalog online.</p>
+        <form class="newsletter-form" onsubmit="return false;">
+          <input type="email" placeholder="Your email address" aria-label="Email address">
+          <button type="submit" class="btn btn--gold">Subscribe</button>
+        </form>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <p class="footer-copy">Copyright Irtiqa Hassan Interiors 2023</p>
+      <div class="footer-social">
+        <a href="#" aria-label="Facebook"><img src="assets/2/Component 28 – 2.svg" alt="Facebook" width="18"></a>
+        <a href="#" aria-label="Instagram"><img src="assets/2/Component 29 – 2.svg" alt="Instagram" width="18"></a>
+        <a href="#" aria-label="LinkedIn"><img src="assets/2/Component 30 – 2.svg" alt="LinkedIn" width="18"></a>
+        <a href="#" aria-label="Twitter"><img src="assets/2/Component 31 – 2.svg" alt="Twitter" width="18"></a>
+        <a href="#" aria-label="WhatsApp"><img src="assets/2/Component 32 – 2.svg" alt="WhatsApp" width="18"></a>
+        <a href="#" aria-label="YouTube"><img src="assets/2/Component 33 – 2.svg" alt="YouTube" width="18"></a>
+      </div>
+      <p class="footer-uan">UAN 111-832-682</p>
+    </div>
   </footer>
 
-  <script>
-  // Filter products by category
-  (function () {
-  const filters = document.querySelectorAll('#shopFilters .filter-btn');
-const cards = document.querySelectorAll('#productGrid .product-card');
-
-filters.forEach(btn => {
-  btn.addEventListener('click', () => {
-  filters.forEach(b => b.classList.remove('filter-btn--active'));
-  btn.classList.add('filter-btn--active');
-const filter = btn.getAttribute('data-filter');
-cards.forEach(card => {
-  const show = filter === 'all' || card.getAttribute('data-category') === filter;
-card.style.display = show ? '' : 'none';
-});
-});
-});
-
-// Sort products by price
-const sortSelect = document.getElementById('sortSelect');
-const grid = document.getElementById('productGrid');
-
-sortSelect.addEventListener('change', () => {
-  const order = sortSelect.value;
-const items = Array.from(cards);
-if (order === 'low-high') {
-items.sort((a, b) => Number(a.getAttribute('data-price')) - Number(b.getAttribute('data-price')));
-} else if (order === 'high-low') {
-items.sort((a, b) => Number(b.getAttribute('data-price')) - Number(a.getAttribute('data-price')));
-}
-items.forEach(item => grid.appendChild(item));
-});
-})();
-</script>
-  </body>
-  </html>
-  
+</body>
+</html>

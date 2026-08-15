@@ -1,0 +1,454 @@
+/* ============================================================
+   SHOP PAGE — shop.css
+   All values sourced directly from SVG assets (exact pixels)
+   Design canvas: 1920px width
+   ============================================================ */
+
+.page-shop {
+  background: #ffffff;
+}
+
+/* ============================================================
+   SHOP BANNER
+   Rectangle 74: 1640×307px, rx=30, fill=#f1f1f1
+   Centered in 1920 → 140px margins each side
+   ============================================================ */
+.shop-banner {
+  padding-top: 87px; /* header height */
+  padding-bottom: 0;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  /* vertical breathing room above/below container */
+  padding-top: calc(87px + 40px);
+  padding-bottom: 0;
+  overflow: visible;
+  margin-top: 3%;
+  margin-bottom: 3%;
+}
+
+/* Leaves image — bottom-left, partially off-screen */
+.shop-banner__leaves {
+  position: absolute;
+  left: -200px;
+  bottom: -200px;
+  width: 500px;
+  z-index: 2;
+  pointer-events: none;
+  transform-origin: left 100%;
+  animation: shop-leaf-sway 5s ease-in-out infinite;
+}
+
+@keyframes shop-leaf-sway {
+  0%   { transform: rotate(0deg);    }
+  20%  { transform: rotate(3deg);    }
+  40%  { transform: rotate(-1.5deg); }
+  65%  { transform: rotate(2.5deg);  }
+  80%  { transform: rotate(-1deg);   }
+  100% { transform: rotate(0deg);    }
+}
+
+/* Rounded container — Rectangle 74 */
+/* 1640/1920 = 85.4% of viewport */
+.shop-banner__container {
+  position: relative;
+  width: calc(100% - 280px); /* 140px each side at 1920px */
+  max-width: 1640px;
+  height: 307px;
+  border-radius: 30px;
+  background: #f1f1f1;
+  display: flex;
+  align-items: center;
+  overflow: visible;
+}
+
+/* Text block — left side, inside container */
+/* From XD: text starts ~140px from container left */
+.shop-banner__text {
+  padding-left: 140px;
+  flex-shrink: 0;
+}
+
+/* "High-End Furniture" — Nigelina 40px #47593d */
+.shop-banner__heading {
+  font-family: var(--font-display);
+  font-size: 40px;
+  font-weight: 400;
+  color: #47593d;
+  line-height: 1;
+  margin-bottom: 18px;
+}
+
+/* Tagline — Poppins Regular 18px #292a2e, line-height matches SVG y=28 */
+.shop-banner__sub {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: #292a2e;
+  line-height: calc(28 / 18); /* 1.556 — matches SVG tspan y-offset of 28 */
+}
+
+/* Chair — right side, overflows container top and bottom */
+.shop-banner__chair {
+  position: absolute;
+  right: -10px;
+  bottom: -40%;
+  height: 460px; /* overflows 60px below + ~93px above 307px container */
+  width: auto;
+  z-index: 2;
+}
+
+/* ============================================================
+   FILTER BAR
+   Path 22405: 1920×108.8px, white, shadow dy=3 blur=9 opacity=0.09
+   ============================================================ */
+.filter-bar {
+  position: relative; /* scrolls with page — not sticky */
+  background: #ffffff;
+  box-shadow: 0 3px 9px rgba(0, 0, 0, 0.09);
+  height: 108.8px;
+  display: flex;
+  align-items: center;
+}
+
+.filter-bar__inner {
+  width: 100%;
+  max-width: 1920px;
+  padding: 0 140px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.filter-bar__categories {
+  display: flex;
+  align-items: center;
+  gap: 40px; /* exact from design — 40px between each filter item */
+}
+
+/* "See All" active button — Component 40: 141×43px, rx=15, #47593d */
+.filter-btn {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: #292a2e;
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+  white-space: nowrap;
+}
+
+.filter-btn--active {
+  width: 141px;
+  height: 43px;
+  border-radius: 15px;
+  background: #47593d;
+  color: #fdfdfd;
+  font-size: 18px;
+}
+
+.filter-bar__sort {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+/* "Sort By" label — Sort By.svg: 61×25, Poppins Regular 18px #292a2e */
+.sort-label {
+  font-family: var(--font-body);
+  font-size: 18px;
+  font-weight: 400;
+  color: #292a2e;
+  white-space: nowrap;
+}
+
+/* "Low to High" dropdown — Component 167: 145×55px, rx=15, #e3e3e3 */
+.sort-dropdown {
+  width: 145px;
+  height: 55px;
+  border-radius: 15px;
+  background: #e3e3e3;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  letter-spacing: -0.03em;
+  color: #292a2e;
+  white-space: nowrap;
+}
+
+/* ============================================================
+   PRODUCT GRID
+   6 cards (3×2), card: 536×374px — Rectangle 8597 SVG
+   Flat top (no radius), 10px bottom radius, #eeeae7
+   Product images overflow 100px ABOVE each card (3D float effect)
+   ============================================================ */
+.shop-grid-section {
+  padding: 0 140px 80px;
+  background: #ffffff;
+  overflow: hidden; /* prevent floating images causing horizontal scroll */
+}
+
+.shop-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr); /* fluid — 536px each at 1920px canvas */
+  column-gap: 16px;
+  row-gap: 120px; /* 100px image overflow + 20px visual breathing room */
+  padding-top: 120px; /* first-row images float into this space */
+  max-width: 1640px; /* design canvas max: 1920 - 280px side padding */
+  margin: 0 auto;
+}
+
+/* ---- Card shell ---- */
+.product-card-2 {
+  width: 100%; /* fluid within grid column */
+  min-height: 374px; /* minimum from design SVG, can expand with content */
+  background: #eeeae7;
+  border-radius: 0 0 10px 10px;
+  overflow: visible; /* critical — lets image float above card top */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ---- Floating product image (3D effect) ---- */
+.product-card-2__img {
+  position: absolute;
+  top: -100px; /* 100px above card top edge */
+  left: 0;
+  right: 0;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.product-card-2__img img {
+  max-height: 220px;
+  max-width: 88%;
+  object-fit: contain;
+  filter: drop-shadow(0 16px 28px rgba(0,0,0,0.13));
+}
+
+/* ---- Body: pushed below image area inside card ---- */
+.product-card-2__body {
+  padding: 132px 28px 20px; /* 132px top clears the 220-100=120px image overlap + 12px gap */
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+/* ---- Dot pagination indicators ---- */
+.product-card-2__dots {
+  display: flex;
+  gap: 6px;
+  justify-content: center;
+  margin-bottom: 18px;
+}
+
+.pc-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #cac5c1;
+}
+
+.pc-dot--active {
+  background: #47593d;
+}
+
+/* ---- Info block ---- */
+.product-card-2__info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-card-2__name {
+  font-family: var(--font-body);
+  font-size: 16px;
+  font-weight: 500;
+  color: #292a2e;
+  margin-bottom: 5px;
+}
+
+.product-card-2__rating {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  margin-bottom: 6px;
+}
+
+.pc-stars {
+  color: #e6b85c;
+  font-size: 13px;
+  letter-spacing: 1px;
+}
+
+.pc-rating-count {
+  font-family: var(--font-body);
+  font-size: 12px;
+  font-weight: 300;
+  color: #9c9c9c;
+}
+
+.product-card-2__price {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  color: #292a2e;
+}
+
+/* ---- Actions row ---- */
+.product-card-2__actions {
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 14px;
+}
+
+.product-card-2__view {
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 400;
+  color: #47593d;
+  text-decoration: none;
+}
+
+.product-card-2__order {
+  background: #292a2e;
+  color: #ffffff;
+  border: none;
+  border-radius: 8px;
+  padding: 9px 22px;
+  font-family: var(--font-body);
+  font-size: 13px;
+  font-weight: 500;
+  letter-spacing: -0.02em;
+  cursor: pointer;
+}
+
+/* ============================================================
+   DETAILED COMFORT SECTION
+   Container background: Group 31948.png (1639×502px, rx=30)
+   Sofa: Group 31943.png (846×592, overflows right+bottom)
+   Watermark: Luxury.svg — 643px Nigelina, #47593d opacity=0.07
+   Button: Component 7–8.svg — 228×64, rx=16, #47593d + white border
+   ============================================================ */
+.comfort-detail {
+  position: relative;
+  padding: 80px 140px 180px; /* 180px bottom: room for ottoman overflow */
+  background: #ffffff;
+  overflow: hidden;
+}
+
+/* "LUXURY" watermark — exact values from Luxury.svg */
+.comfort-detail__watermark {
+  position: absolute;
+  bottom: -60px;
+  right: -40px;
+  font-size: clamp(280px, 33.5vw, 643px);
+  font-family: var(--font-display);
+  color: #47593d;
+  opacity: 0.07;
+  line-height: 1;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 0;
+  user-select: none;
+}
+
+/* Rounded container — Group 31948.png: 1639×502, rx=30 */
+.comfort-detail__container {
+  position: relative;
+  width: 100%;
+  max-width: 1640px;
+  height: 502px;
+  margin: 0 auto;
+  border-radius: 30px;
+  background-image: url('/assets/2/Group 31948.png');
+  background-size: cover;
+  background-position: center;
+  overflow: visible; /* ottoman overflows */
+  z-index: 1;
+}
+
+/* Olive branch — bottom-left inside container, below the text */
+.comfort-detail__leaves {
+  position: absolute;
+  left: 30px;
+  bottom: -20px;
+  height: 260px;
+  width: auto;
+  pointer-events: none;
+  z-index: 2;
+}
+
+/* Text block — left side, vertically centred */
+.comfort-detail__text {
+  position: absolute;
+  top: 50%;
+  left: 64px;
+  transform: translateY(-50%);
+  z-index: 3;
+}
+
+/* "Detailed Comfort." — display/italic heading, white */
+.comfort-detail__heading {
+  font-family: var(--font-display);
+  font-size: 62px;
+  font-style: italic;
+  font-weight: 400;
+  color: #ffffff;
+  margin-bottom: 20px;
+  line-height: 1.1;
+}
+
+/* Description paragraph — Poppins 14px white */
+.comfort-detail__desc {
+  font-family: var(--font-body);
+  font-size: 14px;
+  font-weight: 400;
+  color: #ffffff;
+  line-height: 1.75;
+  margin-bottom: 36px;
+}
+
+/* "View Portfolio →" button — Component 7–8.svg: 228×64, rx=16 */
+.comfort-detail__btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  width: 228px;
+  height: 64px;
+  border-radius: 16px;
+  background: #47593d;
+  border: 1px solid #ffffff;
+  color: #ffffff;
+  font-family: var(--font-body);
+  font-size: 24px;
+  font-weight: 300;
+  text-decoration: none;
+  white-space: nowrap;
+}
+
+/* Sofa — Group 31943.png (846×592): overflows container right+bottom */
+.comfort-detail__ottoman {
+  position: absolute;
+  right: -160px;
+  bottom: -100px;
+  height: 540px; /* Group 31943 is 846×592: at 540px height, width≈772px */
+  width: auto;
+  z-index: 4;
+  pointer-events: none;
+}
