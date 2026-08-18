@@ -94,7 +94,7 @@ export default function ShopPage() {
               With each custom-made sofa, we create<br />
               luxuriously comfortable sofas.
             </p>
-            <a href="#" className="comfort-detail__btn">
+            <a href="#" className="comfort-detail__btn comfort-detail__btn--swap">
               View Portfolio
               <svg width="22" height="16" viewBox="0 0 22.024 16.405" fill="none">
                 <path d="M58.212,181.476H40.685l5.523-5.523a.86.86,0,1,0-1.217-1.217L38,181.728a.886.886,0,0,0-.108.132c-.014.021-.024.044-.036.065a.888.888,0,0,0-.043.083.781.781,0,0,0-.027.087c-.007.025-.017.048-.022.074a.873.873,0,0,0,0,.337c.005.025.015.049.022.074a.807.807,0,0,0,.027.087.821.821,0,0,0,.043.082c.012.022.022.045.036.066a.855.855,0,0,0,.108.132l6.991,6.992a.86.86,0,1,0,1.217-1.217L40.685,183.2H58.212a.86.86,0,1,0,0-1.721Z" transform="translate(243.072 214.837) rotate(180)" fill="#fff" stroke="#fff" strokeWidth="0.7"/>

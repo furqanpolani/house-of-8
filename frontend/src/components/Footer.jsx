@@ -10,8 +10,8 @@ export default function Footer() {
 
         {/* ── Brand column ── */}
         <div className="footer-brand">
-          <img src="/assets/2/Group 31946.svg" alt="House of 8" className="footer-logo-svg" />
-          <p className="footer-brand-name">House of 8</p>
+                  <img src="/assets/LgogHhouse_of_8.png" alt="House of 8" className="footer-logo-svg" />
+          {/* <p className="footer-brand-name">House of 8</p> */}
           <div className="footer-social">
             {['Component 28 – 2', 'Component 29 – 2', 'Component 32 – 2'].map((name, i) => (
               <a key={i} href="#" aria-label={`Social ${i + 1}`}>

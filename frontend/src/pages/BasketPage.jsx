@@ -160,13 +160,6 @@ export default function BasketPage() {
       {/* ── Page body ── */}
       <div className="basket-page">
 
-        {/* Breadcrumb */}
-        <div className="pd-breadcrumb">
-          <Link to="/">Home</Link>
-          <span>/</span>
-          <span>Your Basket</span>
-        </div>
-
         {items.length === 0 ? (
           <div className="basket-empty">
             <p>Your basket is empty.</p>
@@ -177,92 +170,110 @@ export default function BasketPage() {
         ) : (
           <div className="basket-layout">
 
-            {/* ── LEFT: items ── */}
+            {/* ── LEFT: Your Basket ────────────────────────── */}
             <div className="basket-left">
               <h1 className="basket-heading">Your Basket</h1>
 
               <div className="basket-grid">
-                {items.map(item => (
-                  <div className="basket-card" key={item.id}>
-                    {/* Image box */}
-                    <div className="basket-card__img-wrap">
-                      <img src={getImageSrc(item)} alt={item.name} className="basket-card__img" />
-                      <button
-                        className="basket-card__remove"
-                        onClick={() => removeItem(item.id)}
-                        aria-label="Remove item"
-                      >
-                        ✕
-                      </button>
-                    </div>
+                {items.map(item => {
+                  const priceStr = Number(item.price).toLocaleString('en-PK');
+                  const refCode  = `Ref. ${String(item.id).padStart(4,'0')}/${String((item.id * 73) % 999).padStart(3,'0')}/${String((item.id * 17) % 999).padStart(3,'0')}`;
+                  const dimensions = item.dimensions || '43 x 82 x 43 cm';
+                  return (
+                    <div className="basket-card" key={item.id}>
+                      <div className="basket-card__img-wrap">
+                        <img
+                          src={getImageSrc(item)}
+                          alt={item.name}
+                          className="basket-card__img"
+                        />
+                        <button
+                          className="basket-card__remove"
+                          onClick={() => removeItem(item.id)}
+                          aria-label="Remove item"
+                        >
+                          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <line x1="8"  y1="8"  x2="16" y2="16" />
+                            <line x1="16" y1="8"  x2="8"  y2="16" />
+                          </svg>
+                        </button>
+                      </div>
 
-                    {/* Info */}
-                    <div className="basket-card__meta">
-                      <div className="basket-card__top">
-                        <div>
-                          <p className="basket-card__name">{item.name}</p>
-                          <p className="basket-card__price">PKR {Number(item.price).toLocaleString('en-PK')}</p>
-                          <p className="basket-card__ref">
-                            Ref. {String(item.id).padStart(4,'0')}<br />
-                            {item.material || item.category}
-                          </p>
+                      {/* Name + price on left, qty pill on right */}
+                      <div className="basket-card__row">
+                        <div className="basket-card__title">
+                          <p className="basket-card__name">{item.name || 'Lorem ipsum'}</p>
+                          <p className="basket-card__price">PKR {priceStr}</p>
+                        </div>
+                        <div className="basket-card__qty">
+                          <button
+                            className="basket-card__qty-btn"
+                            onClick={() => updateQty(item.id, item.qty - 1)}
+                            aria-label="Decrease quantity"
+                          >−</button>
+                          <span className="basket-card__qty-num">
+                            {String(item.qty).padStart(2, '0')}
+                          </span>
+                          <button
+                            className="basket-card__qty-btn"
+                            onClick={() => updateQty(item.id, item.qty + 1)}
+                            aria-label="Increase quantity"
+                          >+</button>
                         </div>
                       </div>
 
-                      {/* Qty pill */}
-                      <div className="basket-card__qty">
-                        <button
-                          className="basket-card__qty-btn"
-                          onClick={() => updateQty(item.id, item.qty - 1)}
-                        >−</button>
-                        <span className="basket-card__qty-num">
-                          {String(item.qty).padStart(2, '0')}
-                        </span>
-                        <button
-                          className="basket-card__qty-btn"
-                          onClick={() => updateQty(item.id, item.qty + 1)}
-                        >+</button>
-                      </div>
+                      <p className="basket-card__ref">
+                        {refCode}<br />
+                        {dimensions}
+                      </p>
                     </div>
-                  </div>
-                ))}
+                  );
+                })}
               </div>
             </div>
 
-            {/* ── RIGHT: Checkout panel ── */}
+            {/* ── RIGHT: Checkout summary ────────────────── */}
             <div className="basket-right">
+              <h2 className="basket-heading">Checkout</h2>
+
               <div className="checkout-box">
-                <h2 className="checkout-box__title">Checkout</h2>
-                <p className="checkout-box__count">{items.reduce((s,i) => s + i.qty, 0)} Item{items.reduce((s,i) => s + i.qty, 0) !== 1 ? 's' : ''}</p>
+                <p className="checkout-box__count">
+                  {items.reduce((s, i) => s + i.qty, 0)} Item{items.reduce((s, i) => s + i.qty, 0) !== 1 ? 's' : ''}
+                </p>
+
+                <div className="checkout-box__divider" />
+
+                <p className="checkout-box__label">Total items</p>
 
                 <div className="checkout-box__rows">
-                  <div className="checkout-box__label-row">
-                    <span>Total items</span>
-                  </div>
                   {items.map(i => (
                     <div className="checkout-box__row" key={i.id}>
-                      <span>{i.name}</span>
-                      <span>PKR {Number(i.price * i.qty).toLocaleString('en-PK')}</span>
+                      <span className="checkout-box__row-name">{i.name || 'Lorem ipsum'}</span>
+                      <span className="checkout-box__row-value">
+                        PKR {Number(i.price * i.qty).toLocaleString('en-PK')}
+                      </span>
                     </div>
                   ))}
-
-                  <div className="checkout-box__divider" />
-
                   <div className="checkout-box__row">
                     <span>Tax (16%)</span>
-                    <span>PKR {Math.round(tax).toLocaleString('en-PK')}</span>
+                    <span className="checkout-box__row-value">
+                      PKR {Math.round(tax).toLocaleString('en-PK')}
+                    </span>
                   </div>
                   <div className="checkout-box__row">
                     <span>Delivery Charges</span>
-                    <span>PKR {delivery.toLocaleString('en-PK')}</span>
+                    <span className="checkout-box__row-value">
+                      PKR {delivery.toLocaleString('en-PK')}
+                    </span>
                   </div>
+                </div>
 
-                  <div className="checkout-box__divider" />
+                <div className="checkout-box__divider" />
 
-                  <div className="checkout-box__row checkout-box__row--total">
-                    <span>Total</span>
-                    <span>PKR {Math.round(grandTotal).toLocaleString('en-PK')}</span>
-                  </div>
+                <div className="checkout-box__row checkout-box__row--total">
+                  <span>Total</span>
+                  <span>PKR {Math.round(grandTotal).toLocaleString('en-PK')}</span>
                 </div>
 
                 <button

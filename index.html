@@ -6,8 +6,8 @@
   <title>House of 8 — Design. Detail. Luxury.</title>
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="style.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;1,300&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css?v=26">
 </head>
 <body>
 
@@ -37,11 +37,19 @@
   <section class="hero">
     <div class="hero-watermark" aria-hidden="true">LUXURY</div>
 
+    <!--
+      Preload the Best Selling featured image while the user is
+      still on the hero. Visually hidden — its only job is to force
+      the browser to fetch & decode the asset so the scroll-linked
+      entrance into the Bestselling section is instant.
+    -->
+    <img src="assets/Mask Group 29.png" alt="" aria-hidden="true" class="hero-preload">
+
     <!-- Vase anchored to far left of section -->
     <img
-      src="assets/Mask Group 26.png"
+      src="assets/Mask Group 26.png" 
       alt=""
-      class="hero-vase"
+      class="hero-vase" 
       aria-hidden="true"
     >
 
@@ -52,7 +60,7 @@
           What matters to us is timeless design,<br>
           sustainable quality and ecological awareness.
         </p>
-        <a href="#shop" class="btn btn--green">Shop Now &rarr;</a>
+        <a href="#shop" class="btn btn--green">Shop Now <span class="btn-icon">&rarr;</span></a>
       </div>
 
       <div class="hero-right">
@@ -70,11 +78,12 @@
       </div>
     </div>
 
-    <div class="hero-scroll" aria-hidden="true">
-      <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-        <polyline points="6 9 12 15 18 9"/>
+    <a href="#brand" class="hero-scroll" aria-label="Scroll to next section" data-scroll-center>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round">
+        <line x1="12" y1="4" x2="12" y2="18"/>
+        <polyline points="7 13 12 18 17 13"/>
       </svg>
-    </div>
+    </a>
   </section>
 
   <!-- ===================== BRAND VALUES ===================== -->
@@ -107,22 +116,22 @@
       IHI is a high-end Architecture, Interior Design and Furniture studio driven by
       exquisite taste, unparalleled service
     </p>
-    <a href="#shop" class="btn btn--green">Shop Now &rarr;</a>
+    <a href="#shop" class="btn btn--green">Shop Now <span class="btn-icon">&rarr;</span></a>
 
     <div class="bestselling-images">
       <img
-        src="assets/Group 31915.png"
+        src="assets/Group 31915@2x.png"
         alt=""
         class="bestselling-side bestselling-side--left"
         aria-hidden="true"
       >
       <img
         src="assets/Mask Group 29.png"
-        alt="Raw stone coffee table"
+        alt="Best-selling product"
         class="bestselling-main"
       >
       <img
-        src="assets/Group 31915.png"
+        src="assets/Group 31915@2x.png"
         alt=""
         class="bestselling-side bestselling-side--right"
         aria-hidden="true"
@@ -142,7 +151,7 @@
       <h2 class="explore-title">
         &mdash;&ensp;EXPLORE PROJECTS WE ARE PROUD OF&ensp;&mdash;
       </h2>
-      <a href="#" class="btn btn--green">View Portfolio &rarr;</a>
+      <a href="#" class="btn btn--green">View Portfolio <span class="btn-icon">&rarr;</span></a>
     </div>
   </section>
 
@@ -198,7 +207,7 @@
         every detail of every piece. With each custom-made sofa, we create
         luxuriously comfortable sofas.
       </p>
-      <a href="#" class="btn btn--outline">View Portfolio &rarr;</a>
+      <a href="#" class="btn btn--outline">View Portfolio <span class="btn-icon">&rarr;</span></a>
     </div>
     <img
       src="assets/Mask Group 35.png"
@@ -282,6 +291,13 @@
       <h2 class="testimonials-title">What our happy clients say</h2>
     </div>
 
+    <!--
+      Auto-scrolling marquee. Cards are duplicated back-to-back so the
+      CSS animation can translate by -50% and loop seamlessly.
+      On hover the animation slows to half-speed — see .testimonials-track
+      in style.css. Duplicates are aria-hidden so assistive tech only
+      reads each testimonial once.
+    -->
     <div class="testimonials-track" id="testimonialsTrack">
       <div class="testimonials-inner">
 
@@ -329,12 +345,52 @@
           <p class="testimonial-quote">"From the very first consultation to the final handover, the IHI team was professional, creative, and attentive to every detail. Our penthouse looks absolutely stunning."</p>
         </article>
 
-      </div>
-    </div>
+        <!-- Duplicate set — aria-hidden so screen readers don't read testimonials twice -->
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-top">
+            <div class="testimonial-avatar-placeholder">HS</div>
+            <div class="testimonial-meta">
+              <strong class="testimonial-name">Humera Shah</strong>
+              <span class="testimonial-location">6 BHK Villa, D.H.A Phase 6, Karachi</span>
+            </div>
+          </div>
+          <p class="testimonial-quote">"I had a very good experience working with IHI. The best part about having a home done by IHI is the 10-year maintenance warranty that is part of the project contract."</p>
+        </article>
 
-    <div class="testimonials-nav">
-      <button class="t-arrow t-arrow--prev" aria-label="Previous" onclick="scrollTestimonials(-1)">&#8592;</button>
-      <button class="t-arrow t-arrow--next" aria-label="Next" onclick="scrollTestimonials(1)">&#8594;</button>
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-top">
+            <div class="testimonial-avatar-placeholder">AJ</div>
+            <div class="testimonial-meta">
+              <strong class="testimonial-name">Ansab Jahangir</strong>
+              <span class="testimonial-location">Clothing Store, D.H.A Phase 7, Karachi</span>
+            </div>
+          </div>
+          <p class="testimonial-quote">"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great and suitable for every family member."</p>
+        </article>
+
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-top">
+            <div class="testimonial-avatar-placeholder">MJ</div>
+            <div class="testimonial-meta">
+              <strong class="testimonial-name">Maria Jangda</strong>
+              <span class="testimonial-location">Car Showroom, D.H.A Phase 7, Karachi</span>
+            </div>
+          </div>
+          <p class="testimonial-quote">"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great and suitable for every family member."</p>
+        </article>
+
+        <article class="testimonial-card" aria-hidden="true">
+          <div class="testimonial-top">
+            <div class="testimonial-avatar-placeholder">SA</div>
+            <div class="testimonial-meta">
+              <strong class="testimonial-name">Sara Ahmed</strong>
+              <span class="testimonial-location">Penthouse, Clifton Block 5, Karachi</span>
+            </div>
+          </div>
+          <p class="testimonial-quote">"From the very first consultation to the final handover, the IHI team was professional, creative, and attentive to every detail. Our penthouse looks absolutely stunning."</p>
+        </article>
+
+      </div>
     </div>
   </section>
 
@@ -393,28 +449,141 @@
   </footer>
 
   <script>
-    function scrollTestimonials(dir) {
-      const track = document.getElementById('testimonialsTrack');
-      track.scrollBy({ left: dir * 444, behavior: 'smooth' });
-    }
+    /*
+      Testimonial marquee — JS-driven so the hover slow-down transitions
+      smoothly instead of jerking (a CSS `animation-duration` swap would
+      re-map elapsed time and snap the current position).
 
-    // Drag-to-scroll
+      Advances the inner track by pixels-per-second each rAF frame and
+      lerps the current speed toward a target on mouseenter/leave.
+    */
     (function () {
       const track = document.getElementById('testimonialsTrack');
-      let isDown = false, startX, scrollLeft;
-      track.addEventListener('mousedown', e => {
-        isDown = true;
-        startX = e.pageX - track.offsetLeft;
-        scrollLeft = track.scrollLeft;
+      if (!track) return;
+      const inner = track.querySelector('.testimonials-inner');
+      if (!inner) return;
+
+      const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) return;
+
+      const BASE_SPEED  = 60;   // px per second
+      const HOVER_SPEED = 20;
+      const SMOOTHING   = 5;
+
+      let currentSpeed = BASE_SPEED;
+      let targetSpeed  = BASE_SPEED;
+      let position     = 0;
+      let last         = 0;
+
+      function halfWidth() { return inner.scrollWidth / 2; }
+
+      function tick(now) {
+        if (!last) last = now;
+        const dt = Math.min(0.05, (now - last) / 1000);
+        last = now;
+
+        currentSpeed += (targetSpeed - currentSpeed) * Math.min(1, dt * SMOOTHING);
+
+        position -= currentSpeed * dt;
+        const hw = halfWidth();
+        if (hw > 0 && position <= -hw) position += hw;
+
+        inner.style.transform = 'translate3d(' + position + 'px, 0, 0)';
+        requestAnimationFrame(tick);
+      }
+
+      track.addEventListener('mouseenter', () => { targetSpeed = HOVER_SPEED; });
+      track.addEventListener('mouseleave', () => { targetSpeed = BASE_SPEED;  });
+      track.addEventListener('focusin',    () => { targetSpeed = HOVER_SPEED; });
+      track.addEventListener('focusout',   () => { targetSpeed = BASE_SPEED;  });
+      document.addEventListener('visibilitychange', () => {
+        targetSpeed = document.hidden ? 0 : BASE_SPEED;
       });
-      document.addEventListener('mouseup', () => { isDown = false; });
-      track.addEventListener('mousemove', e => {
-        if (!isDown) return;
-        e.preventDefault();
-        const x = e.pageX - track.offsetLeft;
-        track.scrollLeft = scrollLeft - (x - startX);
-      });
+
+      requestAnimationFrame(tick);
     })();
+
+    /*
+      Best Selling featured image — scroll-linked "descend from above".
+
+      Maps the .bestselling section's viewport position into a
+      progress 0..1 that drives the image's translateY and opacity
+      every scroll frame. The image starts a full viewport above its
+      final position (translateY ≈ -(vh+200)) so it's visibly floating
+      near the top of the screen while the section is still below —
+      the user sees it descend into place as they scroll, not just a
+      last-second fade.
+    */
+    (function () {
+      const img = document.querySelector('.bestselling-main');
+      if (!img) return;
+      const section = img.closest('.bestselling');
+      if (!section) return;
+
+      const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
+      if (reduce) {
+        img.style.opacity = '1';
+        img.style.transform = 'translateY(0)';
+        return;
+      }
+
+      // Trigger window — image only starts descending when the
+      // bestselling section top reaches 50% of the viewport (well past
+      // the brand "What matters" section) and completes when its top
+      // reaches the viewport top. TRAVEL = 100vh keeps the image
+      // above the viewport at progress 0.
+      let travel = window.innerHeight;
+      let startY = window.innerHeight * 0.5;
+      let endY   = 0;
+      let rafId  = 0, ticking = false;
+
+      function recalc() {
+        travel = window.innerHeight;
+        startY = window.innerHeight * 0.5;
+        endY   = 0;
+      }
+
+      function update() {
+        ticking = false;
+        const rect = section.getBoundingClientRect();
+        const raw  = (startY - rect.top) / (startY - endY);
+        const p    = raw < 0 ? 0 : raw > 1 ? 1 : raw;
+        const eased = 1 - Math.pow(1 - p, 3);   // ease-out cubic
+
+        img.style.transform = 'translate3d(0, ' + ((1 - eased) * -travel) + 'px, 0)';
+        img.style.opacity   = String(eased);
+      }
+
+      function onScroll() {
+        if (ticking) return;
+        ticking = true;
+        rafId = requestAnimationFrame(update);
+      }
+      function onResize() { recalc(); onScroll(); }
+
+      update();
+      window.addEventListener('scroll', onScroll, { passive: true });
+      window.addEventListener('resize', onResize);
+    })();
+
+    /*
+      Any link marked with `data-scroll-center` smooth-scrolls its
+      target so the target is *vertically centred* in the viewport,
+      instead of snapping the target's top to y=0 (browser default
+      for anchor navigation).
+    */
+    document.querySelectorAll('a[data-scroll-center]').forEach((link) => {
+      link.addEventListener('click', (e) => {
+        const href = link.getAttribute('href') || '';
+        if (!href.startsWith('#')) return;
+        const target = document.getElementById(href.slice(1));
+        if (!target) return;
+        e.preventDefault();
+        const rect    = target.getBoundingClientRect();
+        const centerY = rect.top + window.scrollY + rect.height / 2 - window.innerHeight / 2;
+        window.scrollTo({ top: centerY, behavior: 'smooth' });
+      });
+    });
   </script>
 </body>
 </html>

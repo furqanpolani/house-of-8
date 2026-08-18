@@ -10,7 +10,7 @@ export default function Header() {
         <span /><span /><span />
       </button>
       <Link to="/" className="logo">
-        <img src="/assets/logo.svg" alt="House of 8" className="logo-svg" />
+        <img src="/assets/LgogHhouse_of_8.png" alt="House of 8" className="logo-svg" />
       </Link>
       <Link to="/basket" className="basket-link">
         <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">

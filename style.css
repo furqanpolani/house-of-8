@@ -38,6 +38,8 @@ html {
   --near-black:  #101010;
   --white:       #FFFFFF;
   --off-white:   #F5F5F5;
+  --cream:       #F4EAD1;     /* warm ivory behind hero */
+  --cream-soft:  #F7F0DE;     /* lighter cream for the top wash */
   --gray-text:   #9C9C9C;
   --overlay-20:  rgba(0, 0, 0, 0.20);
   --overlay-40:  rgba(0, 0, 0, 0.40);
@@ -119,6 +121,45 @@ button {
   color: var(--white);
 }
 
+/*
+   Button icon animation — works for FontAwesome <i> elements and
+   manual <span class="btn-icon"> arrow wrappers.
+
+   Idle: gentle horizontal bob to invite the click.
+   Hover: bob pauses, icon slides forward with a tiny tilt so the
+   shopping-cart / arrow feels like it's rolling to the destination.
+*/
+.btn > i,
+.btn .btn-icon {
+  display: inline-block;
+  margin-left: 8px;
+  transition: transform 0.4s cubic-bezier(0.34, 1.56, 0.64, 1);
+  animation: btn-icon-bob 2.2s ease-in-out infinite;
+  will-change: transform;
+}
+
+.btn:hover > i,
+.btn:hover .btn-icon {
+  animation-play-state: paused;
+  transform: translateX(8px) rotate(-6deg);
+}
+
+@keyframes btn-icon-bob {
+  0%, 100% { transform: translateX(0);   }
+  50%      { transform: translateX(4px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .btn > i,
+  .btn .btn-icon {
+    animation: none;
+  }
+  .btn:hover > i,
+  .btn:hover .btn-icon {
+    transform: translateX(4px);
+  }
+}
+
 .btn--outline {
   background: transparent;
   color: var(--white);
@@ -189,8 +230,12 @@ button {
   align-items: center;
   justify-content: space-between;
   padding: 22px var(--side-pad);
-  background: var(--white);
-  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  /* Translucent white so the header blends with the white hero at the
+     top and stays readable when scrolled over darker sections below. */
+  background: rgba(255, 255, 255, 0.82);
+  -webkit-backdrop-filter: blur(10px);
+  backdrop-filter: blur(10px);
+  border-bottom: 0;
 }
 
 .hamburger {
@@ -256,38 +301,77 @@ button {
   align-items: center;
 }
 
+/*
+   LUXURY watermark: bottom-aligned typographic backdrop.
+
+   The negative `bottom: -0.18em` compensates for the font's descender
+   space so the visible baseline of the letters sits flush with the
+   hero's bottom edge (not the element's box). The value is in `em`
+   so it scales proportionally at every clamp breakpoint. Any residual
+   descender pixels (e.g. below the Y) are clipped by
+   `.hero { overflow: hidden }`.
+*/
 .hero-watermark {
   position: absolute;
-  top: 50%;
+  bottom: -0.18em;
   left: 50%;
-  transform: translate(-50%, -50%);
+  transform: translateX(-50%);
   font-family: var(--font-display);
-  font-size: clamp(140px, 20vw, 300px);
-  font-weight: 400;
-  color: rgba(71, 89, 61, 0.07);
+  font-size: clamp(320px, 42vw, 720px);
+  /* Cormorant Garamond tops out at 700 — used here for real weight
+     instead of triggering browser-synthesised faux-bold at 800/900.
+     Google Fonts import in *.html was extended to include 600 & 700. */
+  font-weight: 700;
+  /* Neutral dark ink at 6% instead of the previous soft-gold tint,
+     so the watermark stops casting a yellow cast on the hero copy. */
+  color: rgba(41, 42, 46, 0.06);
   white-space: nowrap;
   pointer-events: none;
   user-select: none;
-  letter-spacing: 0.06em;
+  letter-spacing: 0;
   line-height: 1;
   z-index: 0;
 }
 
+
+
+/*
+   Hero jug vases — shared base for the left and right instances.
+   Anchored to the hero's baseline, above the coffee table.
+*/
 .hero-vase {
   position: absolute;
-  left: -55px;
-  bottom: 70px;
-  width: 220px;
-  z-index: 2;
+  bottom: 30px;
+  z-index: 3;
   pointer-events: none;
+  filter: drop-shadow(0 10px 28px rgba(66, 45, 20, 0.12));
 }
 
+/* Large jug on the far-left edge of the hero. */
+.hero-vase--left {
+  left: -2%;
+  width: clamp(360px, 30vw, 520px);
+}
+
+/* Smaller companion jug to the right of the coffee table. */
+.hero-vase--right {
+  right: 1%;
+  bottom: 20px;
+  width: clamp(180px, 15vw, 280px);
+}
+
+/*
+   Hero content wrapper — full-width, full-height edge-to-edge layout.
+   No max-width cap so the copy and the coffee table can breathe
+   across the entire viewport, matching the reference composition.
+*/
 .hero-inner {
   position: relative;
   z-index: 1;
   width: 100%;
-  max-width: var(--max-w);
-  margin: 0 auto;
+  max-width: none;
+  min-height: calc(100vh - 90px);          /* fill hero minus fixed header */
+  margin: 0;
   padding: 60px var(--side-pad) 80px;
   display: flex;
   align-items: center;
@@ -295,8 +379,10 @@ button {
 }
 
 .hero-left {
-  flex: 0 0 52%;
+  flex: 0 0 46%;
   padding-top: 20px;
+  position: relative;
+  z-index: 3;                 /* keep the copy above the coffee table */
 }
 
 .hero-title {
@@ -320,17 +406,34 @@ button {
 .hero-right {
   flex: 1;
   position: relative;
-  height: 600px;
+  /* Follows the hero's own vertical rhythm — remember html { zoom: 0.80 }
+     means real pixels here are ~25% larger than the numeric value. */
+  height: min(82vh, 900px);
+  min-height: 640px;
   min-width: 0;
 }
 
+/*
+   Hero coffee-table image.
+   Sized to fill the right half of the hero and bleed off the section
+   edge, matching the design comp. The whole page is scaled to 0.80 via
+   html { zoom }, so numbers are intentionally larger than they look.
+*/
 .hero-table {
   position: absolute;
-  right: -80px;
-  bottom: 0;
-  width: 110%;
-  max-width: 760px;
-  z-index: 1;
+  /* Values are pre-zoom (html { zoom: 0.80 }) — real visual size is ~80%
+     of the numbers below. Tuned so the table occupies the right two-
+     thirds of the hero with a small bleed off the right edge. */
+  right: calc(-1 * var(--side-pad) - 4vw);
+  bottom: -50px;
+  /* Override the global `img { max-width: 100% }` reset which would
+     otherwise clamp this image to its ~600px .hero-right parent. */
+  max-width: none;
+  width: clamp(640px, 68vw, 1320px);
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+  filter: drop-shadow(0 30px 56px rgba(58, 42, 20, 0.16));
 }
 
 .hero-branch {
@@ -341,25 +444,68 @@ button {
   z-index: 2;
 }
 
+/*
+   Scroll indicator — mouse-shaped pill with a bouncing arrow inside.
+   Ink-brown stroke against the cream so it reads clearly on the hero
+   without competing with the copy or the coffee table.
+*/
 .hero-scroll {
   position: absolute;
-  bottom: 36px;
+  bottom: 44px;
   left: 50%;
   transform: translateX(-50%);
-  z-index: 2;
-  width: 40px;
-  height: 40px;
-  background: rgba(80, 80, 80, 0.45);
-  border-radius: 50%;
+  z-index: 4;                          /* always above the coffee table */
+  width: 42px;
+  height: 66px;
+  background: transparent;
+  border: 1.75px solid rgba(41, 42, 46, 0.72);
+  border-radius: 999px;
   display: flex;
-  align-items: center;
+  align-items: flex-start;             /* arrow rides in the upper half */
   justify-content: center;
+  padding-top: 14px;
   cursor: pointer;
-  transition: background 0.2s;
+  transition: border-color 0.2s ease, background 0.2s ease;
+}
+
+.hero-scroll svg {
+  width: 16px;
+  height: 16px;
+  stroke: rgba(41, 42, 46, 0.85);
+  stroke-width: 2.25;
+  transition: stroke 0.2s ease;
+  animation: hero-scroll-arrow 1.7s ease-in-out infinite;
+  will-change: transform, opacity;
 }
 
 .hero-scroll:hover {
-  background: rgba(80, 80, 80, 0.65);
+  background: rgba(41, 42, 46, 0.06);
+  border-color: rgba(41, 42, 46, 0.95);
+}
+
+.hero-scroll:hover svg {
+  stroke: rgba(41, 42, 46, 1);
+}
+
+/*
+   Arrow keyframes — travel from the top of the pill toward the
+   bottom, fade out just before reaching the base, then reset at
+   the top for a continuous scroll cue. Uses translateY on the SVG
+   so the outer pill stays perfectly still.
+*/
+@keyframes hero-scroll-arrow {
+  0%   { transform: translateY(0);    opacity: 0; }
+  20%  { transform: translateY(2px);  opacity: 1; }
+  70%  { transform: translateY(20px); opacity: 1; }
+  100% { transform: translateY(26px); opacity: 0; }
+}
+
+/* Respect users who ask the OS to minimise motion. */
+@media (prefers-reduced-motion: reduce) {
+  .hero-scroll svg {
+    animation: none;
+    transform: translateY(4px);
+  }
 }
 
 /* ============================================================
@@ -437,14 +583,51 @@ button {
   display: flex;
   justify-content: center;
   align-items: flex-end;
-  overflow: hidden;
+  /* Allow the featured image to travel above the container edge
+     during its scroll-linked descent without being clipped. */
+  overflow: visible;
 }
 
+/*
+   Featured product photo. Transform + opacity are updated every scroll
+   frame by the small rAF handler at the bottom of index.html, so the
+   image descends from above as the user scrolls into the Bestselling
+   section. CSS only defines layout and the initial hidden state.
+*/
 .bestselling-main {
-  width: clamp(600px, 65vw, 980px);
+  width: clamp(380px, 46vw, 680px);
+  max-width: none;                  /* override global img reset */
   position: relative;
   z-index: 1;
   flex-shrink: 0;
+
+  /* Start above the viewport — JS at the bottom of index.html updates
+     transform + opacity every scroll frame. */
+  opacity: 0;
+  transform: translate3d(0, -100vh, 0);
+  will-change: opacity, transform;
+}
+
+/*
+   Hidden preload for the Best Selling featured image.
+   `visibility: hidden` still downloads and decodes the image,
+   unlike `display: none`.
+*/
+.hero-preload {
+  position: absolute;
+  visibility: hidden;
+  width: 1px;
+  height: 1px;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .bestselling-main {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .bestselling-side {
@@ -552,6 +735,30 @@ button {
   width: 220px;
   pointer-events: none;
   z-index: 0;
+  /* Natural sway — pivot at the stem base so the leaves move like
+     they're catching a soft breeze. */
+  transform-origin: 100% 100%;
+  animation: leaf-sway 6.5s ease-in-out infinite;
+  will-change: transform;
+}
+
+/*
+   Shared sway keyframes for decorative botanical elements.
+   Kept subtle so the motion reads as ambient rather than restless.
+*/
+@keyframes leaf-sway {
+  0%   { transform: rotate(0deg);    }
+  20%  { transform: rotate(3deg);    }
+  40%  { transform: rotate(-1.5deg); }
+  60%  { transform: rotate(2.5deg);  }
+  80%  { transform: rotate(-1deg);   }
+  100% { transform: rotate(0deg);    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .comfort-leaves {
+    animation: none;
+  }
 }
 
 /* ============================================================
@@ -768,25 +975,32 @@ button {
   background: var(--gold);
 }
 
+/*
+   Testimonials — CSS-driven infinite marquee.
+
+   The markup renders each testimonial twice back-to-back. The inner
+   track translates from 0 to -50% linearly; because the second half
+   is an exact copy of the first, the loop is seamless — as the second
+   copy reaches the origin, we snap back to 0 and the animation
+   continues with the first copy in the same visual position.
+*/
 .testimonials-track {
-  overflow-x: auto;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-  cursor: grab;
+  overflow: hidden;
+  cursor: default;
 }
 
-.testimonials-track:active {
-  cursor: grabbing;
-}
-
-.testimonials-track::-webkit-scrollbar {
-  display: none;
-}
-
+/*
+   Layout only — the transform is driven by rAF in the small script
+   at the bottom of index.html so we can smoothly lerp speed on hover
+   without the jerk that changing `animation-duration` would cause.
+*/
 .testimonials-inner {
   display: flex;
   gap: 24px;
   padding-bottom: 8px;
+  width: max-content;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
 }
 
 .testimonial-card {
@@ -1052,12 +1266,25 @@ button {
   }
 
   .hero-left {
-    flex: 0 0 360px;
+    flex: 0 0 42%;
   }
 
   .hero-table {
-    width: 520px;
-    right: -20px;
+    width: clamp(720px, 92vw, 1200px);
+    right: calc(-1 * var(--side-pad) - 5vw);
+    bottom: -40px;
+  }
+
+  .hero-vase--left {
+    width: clamp(220px, 26vw, 320px);
+  }
+
+  .hero-vase--right {
+    width: clamp(140px, 12vw, 200px);
+  }
+
+  .hero-watermark {
+    font-size: clamp(180px, 32vw, 380px);
   }
 
   .product-grid {
@@ -1102,14 +1329,19 @@ button {
     font-size: 48px;
   }
 
-  .hero-right {
+  /* .hero-right {
     width: 100%;
-    height: 340px;
-  }
+    height: 380px;
+  } */
 
   .hero-table {
-    width: 100%;
-    right: 0;
+    right: auto;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 0;
+    width: 96vw;
+    max-width: 560px;
+    filter: drop-shadow(0 14px 30px rgba(58, 42, 20, 0.14));
   }
 
   .hero-vase {
@@ -1122,7 +1354,9 @@ button {
   }
 
   .hero-watermark {
-    font-size: 120px;
+    font-size: clamp(140px, 46vw, 260px);
+    /* inherits `bottom: -0.18em` from the base rule so the letter
+       bottoms stay flush with the hero baseline at every viewport. */
   }
 
   /* Brand */
