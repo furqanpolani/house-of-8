@@ -23,15 +23,24 @@ const SHOP_IMAGES = [
 const LOCAL_FALLBACK = '/assets/2/Group 31923.png';
 
 function getImageSrc(p) {
+  const images = p?.images || [];
+  const primary = images.find(i => i.is_primary) || images[0];
+  if (primary?.filename && !primary.filename.startsWith('default-')) {
+    return `/uploads/${primary.filename}`;
+  }
   const id  = Number(p?.id);
-  const idx = Number.isFinite(id)
-    ? Math.abs(id) % SHOP_IMAGES.length
-    : 0;
+  const idx = Number.isFinite(id) ? Math.abs(id) % SHOP_IMAGES.length : 0;
   return SHOP_IMAGES[idx];
 }
 
+function getAllImageSrcs(p) {
+  const images = (p?.images || []).filter(i => !i.filename.startsWith('default-'));
+  if (images.length > 0) return images.map(i => `/uploads/${i.filename}`);
+  return null;
+}
+
 function handleImgError(e) {
-  if (e.currentTarget.src !== LOCAL_FALLBACK) {
+  if (e.currentTarget.src !== window.location.origin + LOCAL_FALLBACK) {
     e.currentTarget.src = LOCAL_FALLBACK;
   }
 }
@@ -82,9 +91,11 @@ export default function ProductDetailPage() {
       .finally(() => setLoading(false));
   }, [id]);
 
-  // Gallery: current product image + first 2 related images.
+  // Gallery: all backend images for this product, or fall back to related
   const gallery = useMemo(() => {
     if (!product) return [];
+    const backendImgs = getAllImageSrcs(product);
+    if (backendImgs) return backendImgs;
     const imgs = [getImageSrc(product)];
     related.slice(0, 2).forEach(r => {
       const src = getImageSrc(r);

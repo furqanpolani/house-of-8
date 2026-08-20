@@ -21,17 +21,20 @@ const SHOP_IMAGES = [
 const LOCAL_FALLBACK = '/assets/2/Group 31923.png';
 
 function getImageSrc(product) {
+  // Use primary image from backend if available
+  const images = product?.images || [];
+  const primary = images.find(i => i.is_primary) || images[0];
+  if (primary?.filename && !primary.filename.startsWith('default-')) {
+    return `/uploads/${primary.filename}`;
+  }
+  // Fall back to external placeholder pool
   const id  = Number(product?.id);
-  const idx = Number.isFinite(id)
-    ? Math.abs(id) % SHOP_IMAGES.length
-    : 0;
+  const idx = Number.isFinite(id) ? Math.abs(id) % SHOP_IMAGES.length : 0;
   return SHOP_IMAGES[idx];
 }
 
 function handleImgError(e) {
-  // If a hot-linked URL is blocked or fails, drop to a local asset
-  // so the tile never renders as a broken image.
-  if (e.currentTarget.src !== LOCAL_FALLBACK) {
+  if (e.currentTarget.src !== window.location.origin + LOCAL_FALLBACK) {
     e.currentTarget.src = LOCAL_FALLBACK;
   }
 }
