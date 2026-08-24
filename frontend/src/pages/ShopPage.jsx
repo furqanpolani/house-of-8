@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import ProductCard from '../components/ProductCard.jsx';
+import { getProducts } from '../data/productsService.js';
 
 const CATEGORIES = ['See All', 'Bed', 'Arm Chair', 'Sette', 'Coffee Table', 'Accessories'];
 
@@ -11,12 +12,8 @@ export default function ShopPage() {
   const [activeCategory, setActiveCategory] = useState('See All');
 
   useEffect(() => {
-    const url = activeCategory === 'See All'
-      ? '/api/products'
-      : `/api/products?category=${encodeURIComponent(activeCategory)}`;
     setLoading(true);
-    fetch(url)
-      .then(r => r.json())
+    getProducts(activeCategory)
       .then(data => { setProducts(data); setLoading(false); })
       .catch(() => setLoading(false));
   }, [activeCategory]);

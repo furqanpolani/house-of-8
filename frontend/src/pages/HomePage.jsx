@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import '@fortawesome/fontawesome-free/css/all.min.css';
+import { getProducts } from '../data/productsService.js';
 
 /*
    Fallback product images keyed by category — mirrors the map used
@@ -132,8 +133,7 @@ export default function HomePage() {
     // Load the first 6 products for the 2×3 "Best Selling" showcase grid.
     // Fetch up to 8 products so the Best Selling grid has cards to
     // reveal when the user scrolls the right column.
-    fetch('/api/products')
-      .then(r => (r.ok ? r.json() : Promise.reject(r.status)))
+    getProducts()
       .then(data => {
         if (Array.isArray(data) && data.length > 0) {
           setProducts(data.slice(0, 8));

@@ -29,9 +29,10 @@ export default defineConfig({
   ],
   server: {
     port: 5173,
+    // Keep /api proxy so the admin panel still works in local dev with the backend running.
+    // /uploads is now served from public/uploads statically — no proxy needed.
     proxy: {
-      '/api':     { target: 'http://localhost:3001', changeOrigin: true },
-      '/uploads': { target: 'http://localhost:3001', changeOrigin: true },
+      '/api': { target: 'http://localhost:3001', changeOrigin: true },
     },
   },
 });

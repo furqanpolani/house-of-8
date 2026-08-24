@@ -4,6 +4,7 @@ import ShopPage              from './pages/ShopPage.jsx';
 import ProductDetailPage     from './pages/ProductDetailPage.jsx';
 import BasketPage            from './pages/BasketPage.jsx';
 import OrderConfirmationPage from './pages/OrderConfirmationPage.jsx';
+import ContactPage           from './pages/ContactPage.jsx';
 import AdminLogin            from './admin/AdminLogin.jsx';
 import AdminDashboard        from './admin/AdminDashboard.jsx';
 
@@ -20,6 +21,7 @@ export default function App() {
       <Route path="/product/:id"     element={<ProductDetailPage />} />
       <Route path="/basket"          element={<BasketPage />} />
       <Route path="/order-confirmed" element={<OrderConfirmationPage />} />
+      <Route path="/contact"         element={<ContactPage />} />
       <Route path="/admin/login"     element={<AdminLogin />} />
       <Route path="/admin"           element={<RequireAdmin><AdminDashboard /></RequireAdmin>} />
       <Route path="*"                element={<Navigate to="/" replace />} />

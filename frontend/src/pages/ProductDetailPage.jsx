@@ -3,6 +3,7 @@ import { useParams, useNavigate, Link } from 'react-router-dom';
 import Header from '../components/Header.jsx';
 import Footer from '../components/Footer.jsx';
 import { useCart } from '../context/CartContext.jsx';
+import { getProduct, getProducts } from '../data/productsService.js';
 
 /*
   Curated external product photos — cycled deterministically by product id
@@ -79,13 +80,12 @@ export default function ProductDetailPage() {
 
   useEffect(() => {
     setLoading(true);
-    fetch(`/api/products/${id}`)
-      .then(r => { if (!r.ok) throw new Error(); return r.json(); })
+    getProduct(id)
       .then(p => {
+        if (!p) throw new Error('not found');
         setProduct(p);
-        return fetch(`/api/products?category=${encodeURIComponent(p.category)}`);
+        return getProducts(p.category);
       })
-      .then(r => r.json())
       .then(all => setRelated(all.filter(p => p.id !== Number(id)).slice(0, 4)))
       .catch(() => navigate('/shop'))
       .finally(() => setLoading(false));

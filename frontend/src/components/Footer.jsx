@@ -1,72 +1,71 @@
+import { Link } from 'react-router-dom';
+
 export default function Footer() {
   return (
     <footer className="footer">
-      <img
-        src="/assets/r23_Realistic_image_of_tropical_leaves_in_different_poses_wit_80d95387-c7d2-42ca-a677-9c2a2ac4d703_0 copy 22.png"
-        alt="" className="footer-leaves" aria-hidden="true"
-      />
-
       <div className="footer-inner">
 
         {/* ── Brand column ── */}
         <div className="footer-brand">
-                  <img src="/assets/LgogHhouse_of_8.png" alt="House of 8" className="footer-logo-svg" />
-          {/* <p className="footer-brand-name">House of 8</p> */}
+          <img src="/assets/LgogHhouse_of_8.png" alt="House of 8" className="footer-logo-svg" />
+          <p className="footer-tagline">Sculptural. Natural. Timeless.</p>
           <div className="footer-social">
-            {['Component 28 – 2', 'Component 29 – 2', 'Component 32 – 2'].map((name, i) => (
-              <a key={i} href="#" aria-label={`Social ${i + 1}`}>
-                <img src={`/assets/2/${name}.svg`} alt="" width="20" />
-              </a>
-            ))}
+            {/* Instagram */}
+            <a href="https://www.instagram.com/houseofeight" target="_blank" rel="noreferrer" aria-label="Instagram">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
+                <circle cx="12" cy="12" r="4"/>
+                <circle cx="17.5" cy="6.5" r="0.5" fill="currentColor"/>
+              </svg>
+            </a>
+            {/* WhatsApp */}
+            <a href="https://wa.me/923333317121" target="_blank" rel="noreferrer" aria-label="WhatsApp">
+              <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/>
+              </svg>
+            </a>
           </div>
-          <p className="footer-uan">
-            <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true" style={{ marginRight: 6, flexShrink: 0 }}>
-              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07A19.5 19.5 0 0 1 4.69 12 19.79 19.79 0 0 1 1.61 3.36 2 2 0 0 1 3.6 1h3a2 2 0 0 1 2 1.72c.127.96.361 1.903.7 2.81a2 2 0 0 1-.45 2.11L7.91 8.77a16 16 0 0 0 6.29 6.29l.87-.87a2 2 0 0 1 2.11-.45c.907.339 1.85.573 2.81.7A2 2 0 0 1 22 16.92z"/>
-            </svg>
-            UAN: 111-832-682
-          </p>
         </div>
 
-        {/* ── Nav columns ── */}
-        <nav className="footer-nav" aria-label="Footer navigation">
-          <div className="footer-col">
-            <h5 className="footer-col-title">Explore</h5>
-            <a href="#">Living</a>
-            <a href="#">Dining</a>
-            <a href="#">Bedroom</a>
-            <a href="#">Office</a>
-          </div>
-          <div className="footer-col">
-            <h5 className="footer-col-title">Services</h5>
-            <a href="#">Living</a>
-            <a href="#">Dining</a>
-            <a href="#">Bedroom</a>
-            <a href="#">Office</a>
-          </div>
-          <div className="footer-col">
-            <h5 className="footer-col-title">Services</h5>
-            <a href="#">Living</a>
-            <a href="#">Dining</a>
-            <a href="#">Bedroom</a>
-            <a href="#">Office</a>
-          </div>
-        </nav>
+        {/* ── Company column ── */}
+        <div className="footer-col">
+          <h5 className="footer-col-title">Company</h5>
+          <Link to="/about" className="footer-col-link">About Us</Link>
+          <Link to="/contact" className="footer-col-link">Contact Us</Link>
+        </div>
 
-        {/* ── Newsletter ── */}
-        <div className="footer-newsletter">
-          <p className="newsletter-heading">Join the IHI Family</p>
-          <p className="newsletter-sub">Please fill in your details to get access to our catalog online.</p>
-          <form className="newsletter-form" onSubmit={e => e.preventDefault()}>
-            <input type="email" placeholder="Your email address" aria-label="Email address" />
-            <button type="submit" className="btn btn--gold">Subscribe</button>
-          </form>
+        {/* ── Products column ── */}
+        <div className="footer-col">
+          <h5 className="footer-col-title">Our Products</h5>
+          <Link to="/shop" className="footer-col-link">Center Table</Link>
+          <Link to="/shop" className="footer-col-link">Side Table</Link>
+          <Link to="/shop" className="footer-col-link">Decor</Link>
+          <Link to="/shop" className="footer-col-link">Cushion</Link>
+        </div>
+
+        {/* ── Contact column ── */}
+        <div className="footer-contact-col">
+          <div className="footer-contact-item">
+            <img src="/assets/contactus/Group 43039.svg" alt="" width="38" height="38" className="footer-contact-icon" />
+            <div>
+              <span className="footer-contact-label">Phone / WhatsApp</span>
+              <a href="tel:+923333317121" className="footer-contact-value">+92 333 3317121</a>
+            </div>
+          </div>
+          <div className="footer-contact-item">
+            <img src="/assets/contactus/Group 43041.svg" alt="" width="38" height="38" className="footer-contact-icon" />
+            <div>
+              <span className="footer-contact-label">Email</span>
+              <a href="mailto:hello@houseofviii.com" className="footer-contact-value">hello@houseofviii.com</a>
+            </div>
+          </div>
         </div>
 
       </div>
 
       {/* ── Bottom bar ── */}
       <div className="footer-bottom">
-        <p className="footer-copy">Copyright Irtiqa Hassan Interiors 2023</p>
+        <span className="footer-copy">copyright 2026 | House of Eight</span>
       </div>
     </footer>
   );
