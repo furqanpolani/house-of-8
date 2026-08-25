@@ -1,8 +1,0 @@
-<svg id="Component_7_1" data-name="Component 7 – 1" xmlns="http://www.w3.org/2000/svg" width="228" height="64" viewBox="0 0 228 64">
-  <g id="Rectangle_3" data-name="Rectangle 3" fill="#47593d" stroke="#fff" stroke-width="1">
-    <rect width="228" height="64" rx="16" stroke="none"/>
-    <rect x="0.5" y="0.5" width="227" height="63" rx="15.5" fill="none"/>
-  </g>
-  <text id="Shop_Now" data-name="Shop Now" transform="translate(42.338 41)" fill="#fff" font-size="24" font-family="SofiaPro-Light, Sofia Pro" font-weight="300"><tspan x="0" y="0">Shop Now</tspan></text>
-  <path id="Path_22402" data-name="Path 22402" d="M58.212,181.476H40.685l5.523-5.523a.86.86,0,1,0-1.217-1.217L38,181.728a.886.886,0,0,0-.108.132c-.014.021-.024.044-.036.065a.888.888,0,0,0-.043.083.781.781,0,0,0-.027.087c-.007.025-.017.048-.022.074a.873.873,0,0,0,0,.337c.005.025.015.049.022.074a.807.807,0,0,0,.027.087.821.821,0,0,0,.043.082c.012.022.022.045.036.066a.855.855,0,0,0,.108.132l6.991,6.992a.86.86,0,1,0,1.217-1.217L40.685,183.2H58.212a.86.86,0,1,0,0-1.721Z" transform="translate(223.41 214.837) rotate(180)" fill="#fff" stroke="#fff" stroke-width="0.7"/>
-</svg>
