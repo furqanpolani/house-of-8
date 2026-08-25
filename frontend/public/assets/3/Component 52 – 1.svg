@@ -1,0 +1,9 @@
+<svg id="Component_52_1" data-name="Component 52 – 1" xmlns="http://www.w3.org/2000/svg" width="296" height="57" viewBox="0 0 296 57">
+  <rect id="Rectangle_37" data-name="Rectangle 37" width="295" height="55" rx="15" transform="translate(1 1)" fill="#292a2e"/>
+  <g id="Rectangle_8508" data-name="Rectangle 8508" fill="#fff" stroke="#292a2e" stroke-width="1">
+    <rect width="150" height="57" rx="13" stroke="none"/>
+    <rect x="0.5" y="0.5" width="149" height="56" rx="12.5" fill="none"/>
+  </g>
+  <text id="PKR_45_000" data-name="PKR 45,000" transform="translate(29 34)" fill="#292a2e" font-size="16" font-family="Poppins-Medium, Poppins" font-weight="500" letter-spacing="-0.03em"><tspan x="0" y="0">PKR 45,000</tspan></text>
+  <text id="Add_to_Basket" data-name="Add to Basket" transform="translate(169 34)" fill="#fff" font-size="16" font-family="Poppins-Medium, Poppins" font-weight="500" letter-spacing="-0.03em"><tspan x="0" y="0">Add to Basket</tspan></text>
+</svg>
