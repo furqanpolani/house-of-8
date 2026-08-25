@@ -1,5 +1,6 @@
 node_modules/
-frontend/.vite/
-backend/house-of-8.db
+.vite/
+dist/
+*.db
 *.log
 .DS_Store
