@@ -13,7 +13,9 @@ async function loadAll() {
 
 export async function getProducts(category) {
   const all = await loadAll();
-  if (!category || category === 'See All') return all;
+  // No category = home page showcase; skip products flagged shop-only.
+  if (!category) return all.filter(p => !p.hideOnHome);
+  if (category === 'See All') return all;
   return all.filter(p => p.category === category);
 }
 

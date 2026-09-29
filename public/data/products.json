@@ -100,5 +100,38 @@
         "is_primary": 1
       }
     ]
+  },
+  {
+    "id": 7,
+    "name": "Wave Bowl",
+    "category": "Accessories",
+    "material": "Travertine Stone",
+    "price": 18000,
+    "rating": 5,
+    "image": "wave-bowl-1.png",
+    "finish": "Honed natural travertine",
+    "dimensions": "H 10cm x Dia 30cm",
+    "weight": "Approx. 3kg",
+    "shortDescription": "A hand-carved travertine bowl with a soft, scalloped wave rim",
+    "description": "A sculptural bowl carved from natural travertine, its scalloped rim rising and falling in a gentle wave. The porous, speckled stone and low turned foot give it an organic presence — equally suited to holding fruit or standing alone as a decorative centrepiece.",
+    "hideOnHome": true,
+    "created_at": "2026-09-29 12:00:00",
+    "images": [
+      {
+        "id": 7,
+        "filename": "wave-bowl-1.png",
+        "is_primary": 1
+      },
+      {
+        "id": 8,
+        "filename": "wave-bowl-2.png",
+        "is_primary": 0
+      },
+      {
+        "id": 9,
+        "filename": "wave-bowl-3.png",
+        "is_primary": 0
+      }
+    ]
   }
 ]
