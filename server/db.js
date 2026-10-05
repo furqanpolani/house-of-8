@@ -46,10 +46,11 @@ export const SCHEMA = `
   CREATE TABLE IF NOT EXISTS product_images (
     id         SERIAL PRIMARY KEY,
     product_id INTEGER NOT NULL REFERENCES products(id) ON DELETE CASCADE,
-    filename   TEXT NOT NULL UNIQUE,
+    filename   TEXT NOT NULL,
     is_primary SMALLINT DEFAULT 0,
     mime       TEXT,
-    data       BYTEA
+    data       BYTEA,
+    UNIQUE (product_id, filename)
   );
 
   CREATE TABLE IF NOT EXISTS orders (

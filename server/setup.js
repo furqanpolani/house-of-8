@@ -25,7 +25,7 @@ for (const p of products) {
   for (const img of p.images || []) {
     await pool.query(
       `INSERT INTO product_images (product_id, filename, is_primary)
-       VALUES ($1, $2, $3) ON CONFLICT (filename) DO NOTHING`,
+       VALUES ($1, $2, $3) ON CONFLICT (product_id, filename) DO NOTHING`,
       [p.id, img.filename, img.is_primary]
     );
   }
