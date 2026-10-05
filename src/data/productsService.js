@@ -1,27 +1,32 @@
-// Single source of truth for product data.
-// Loads once from the static JSON bundle; subsequent calls use the cache.
-// The admin panel still uses /api/* directly — this is for public pages only.
+// Product data for public pages.
+// - Home page showcase (getProducts() with no category): static JSON bundle,
+//   so its pictures never change when the catalogue does.
+// - Shop listing and product pages: live from the backend (/api/products).
 
-let cache = null;
+let homeCache = null;
 
-async function loadAll() {
-  if (cache) return cache;
+async function loadHome() {
+  if (homeCache) return homeCache;
   const res = await fetch('/data/products.json');
-  cache = await res.json();
-  return cache;
+  homeCache = (await res.json()).filter(p => !p.hideOnHome);
+  return homeCache;
+}
+
+async function api(path) {
+  const res = await fetch(path);
+  if (res.status === 404) return null;
+  if (!res.ok) throw new Error(`Request failed: ${res.status}`);
+  return res.json();
 }
 
 export async function getProducts(category) {
-  const all = await loadAll();
-  // No category = home page showcase; skip products flagged shop-only.
-  if (!category) return all.filter(p => !p.hideOnHome);
-  if (category === 'See All') return all;
-  return all.filter(p => p.category === category);
+  if (!category) return loadHome();
+  const qs = category === 'See All' ? '' : `?category=${encodeURIComponent(category)}`;
+  return (await api(`/api/products${qs}`)) || [];
 }
 
 export async function getProduct(id) {
-  const all = await loadAll();
-  return all.find(p => p.id === Number(id)) || null;
+  return api(`/api/products/${encodeURIComponent(id)}`);
 }
 
 export function getImageUrl(product) {

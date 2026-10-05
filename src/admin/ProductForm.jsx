@@ -5,6 +5,7 @@ const CATEGORIES = ['Bed', 'Arm Chair', 'Sette', 'Coffee Table', 'Accessories'];
 export default function ProductForm({ product, onSave, onCancel }) {
   const [form, setForm] = useState({
     name: '', category: 'Arm Chair', material: '', price: '', rating: '5',
+    finish: '', dimensions: '', weight: '', shortDescription: '', description: '',
   });
   // Images already on the server (for existing products)
   const [serverImages, setServerImages] = useState([]);
@@ -27,6 +28,9 @@ export default function ProductForm({ product, onSave, onCancel }) {
       setForm({
         name: product.name, category: product.category,
         material: product.material || '', price: product.price, rating: product.rating,
+        finish: product.finish || '', dimensions: product.dimensions || '',
+        weight: product.weight || '', shortDescription: product.shortDescription || '',
+        description: product.description || '',
       });
       const imgs = product.images || [];
       setServerImages(imgs);
@@ -97,16 +101,18 @@ export default function ProductForm({ product, onSave, onCancel }) {
 
       let latest = data;
 
-      // 2. Bulk-upload pending files if any
+      // 2. Upload pending files one per request (Vercel caps request bodies at 4.5MB)
       if (pendingFiles.length > 0) {
-        const imgBody = new FormData();
-        pendingFiles.forEach(f => imgBody.append('images', f));
-        const imgRes  = await fetch(`/api/products/${latest.id}/images`, {
-          method: 'POST', headers: { 'x-admin-token': token }, body: imgBody,
-        });
-        const imgData = await imgRes.json();
-        if (!imgRes.ok) throw new Error(imgData.error || 'Image upload failed');
-        latest = imgData;
+        for (const file of pendingFiles) {
+          const imgBody = new FormData();
+          imgBody.append('images', file);
+          const imgRes  = await fetch(`/api/products/${latest.id}/images`, {
+            method: 'POST', headers: { 'x-admin-token': token }, body: imgBody,
+          });
+          const imgData = await imgRes.json();
+          if (!imgRes.ok) throw new Error(imgData.error || 'Image upload failed');
+          latest = imgData;
+        }
 
         // If pending primary index > 0, promote that image
         if (!product && pendingPrimary > 0) {
@@ -158,6 +164,27 @@ export default function ProductForm({ product, onSave, onCancel }) {
           <input name="rating" type="number" value={form.rating} onChange={handleChange} min="1" max="5" step="0.1" />
         </label>
       </div>
+
+      <div className="admin-form__row">
+        <label>Finish
+          <input name="finish" value={form.finish} onChange={handleChange} placeholder="e.g. Honed natural travertine" />
+        </label>
+        <label>Dimensions
+          <input name="dimensions" value={form.dimensions} onChange={handleChange} placeholder="e.g. H 10cm x Dia 30cm" />
+        </label>
+      </div>
+
+      <label>Weight
+        <input name="weight" value={form.weight} onChange={handleChange} placeholder="e.g. Approx. 3kg" />
+      </label>
+
+      <label>Short Description
+        <input name="shortDescription" value={form.shortDescription} onChange={handleChange} placeholder="One line shown under the price" />
+      </label>
+
+      <label>Description
+        <textarea name="description" value={form.description} onChange={handleChange} rows={4} />
+      </label>
 
       {/* Images section */}
       <div className="admin-form__images-label">
