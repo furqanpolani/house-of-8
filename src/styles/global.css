@@ -1508,7 +1508,7 @@ button {
      "stuck" feeling.
      Total: 100vh (section) + 200vh (slide) + 20vh (dwell) = 320vh.
   */
-  height: 400vh;
+  height: 100vh;
   /* display: flex;
   justify-content: center;
   align-items: center; */
