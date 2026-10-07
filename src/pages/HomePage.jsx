@@ -685,7 +685,7 @@ export default function HomePage() {
 
       {/* ══════════════ DETAILED COMFORT — INTERIOR ══════════════ */}
       {/* <section className="comfort-interior"> */}
-        <div className="comfort-interior-wrap">
+        {/* <div className="comfort-interior-wrap">
           <div
             className="comfort-interior-bg bg-camel"
             aria-label="Luxury interior living room"
@@ -695,10 +695,10 @@ export default function HomePage() {
             alt="Stepped travertine coffee table"
             className="comfort-interior-table"
           />
-        </div>
-        <div className='bg-gray-space'>
+        </div> */}
+        {/* <div className='bg-gray-space'>
 
-        </div>
+        </div> */}
         {/* <div className="comfort-interior-content">
           <h3 className="comfort-heading comfort-heading--lg" style={{ color: '#fff', marginBottom: 20 }}>
             Detailed Comfort.
