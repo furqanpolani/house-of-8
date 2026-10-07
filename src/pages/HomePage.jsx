@@ -97,9 +97,9 @@ const FALLBACK_PRODUCTS = [
 ];
 
 export default function HomePage() {
-  // Start with the static fallback so the showcase paints instantly.
-  // The API response replaces it once (and only if) it returns items.
-  const [products, setProducts] = useState(FALLBACK_PRODUCTS);
+  // Filled from the backend; the static fallback is only used if the
+  // request fails, so placeholder cards never flash before real ones.
+  const [products, setProducts] = useState([]);
 
   // References for the two coffee-table images we cross-fade during scroll.
   const heroTableRef = useRef(null);
@@ -133,16 +133,12 @@ export default function HomePage() {
     // Load the first 6 products for the 2×3 "Best Selling" showcase grid.
     // Fetch up to 8 products so the Best Selling grid has cards to
     // reveal when the user scrolls the right column.
+    // Newest products from the database, so the grid follows the catalogue.
     getProducts()
       .then(data => {
-        if (Array.isArray(data) && data.length > 0) {
-          setProducts(data.slice(0, 8));
-        }
-        // Else: keep the fallback we initialised with.
+        setProducts(Array.isArray(data) && data.length > 0 ? data.slice(0, 8) : FALLBACK_PRODUCTS);
       })
-      .catch(() => {
-        // Fetch failed — nothing to do, fallback stays in place.
-      });
+      .catch(() => setProducts(FALLBACK_PRODUCTS));
   }, []);
 
   /*

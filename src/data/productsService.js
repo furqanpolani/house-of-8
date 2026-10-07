@@ -1,16 +1,4 @@
-// Product data for public pages.
-// - Home page showcase (getProducts() with no category): static JSON bundle,
-//   so its pictures never change when the catalogue does.
-// - Shop listing and product pages: live from the backend (/api/products).
-
-let homeCache = null;
-
-async function loadHome() {
-  if (homeCache) return homeCache;
-  const res = await fetch('/data/products.json');
-  homeCache = (await res.json()).filter(p => !p.hideOnHome);
-  return homeCache;
-}
+// Product data for public pages, live from the backend (/api/products).
 
 async function api(path) {
   const res = await fetch(path);
@@ -20,8 +8,7 @@ async function api(path) {
 }
 
 export async function getProducts(category) {
-  if (!category) return loadHome();
-  const qs = category === 'See All' ? '' : `?category=${encodeURIComponent(category)}`;
+  const qs = !category || category === 'See All' ? '' : `?category=${encodeURIComponent(category)}`;
   return (await api(`/api/products${qs}`)) || [];
 }
 
