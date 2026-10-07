@@ -684,7 +684,7 @@ export default function HomePage() {
       </section>
 
       {/* ══════════════ DETAILED COMFORT — INTERIOR ══════════════ */}
-      <section className="comfort-interior">
+      {/* <section className="comfort-interior"> */}
         <div className="comfort-interior-wrap">
           <div
             className="comfort-interior-bg bg-camel"
@@ -712,7 +712,7 @@ export default function HomePage() {
             View Portfolio <span className="btn-icon">&rarr;</span>
           </a>
         </div> */}
-      </section>
+      {/* </section> */}
 
       {/* ══════════════ SHOP PREVIEW ══════════════
         New layout: full-bleed banner on the left (Detailed Comfort
