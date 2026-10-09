@@ -846,10 +846,10 @@ export default function HomePage() {
         </div>
       </section>
       {/* ══════════════ TESTIMONIALS ══════════════ */}
-      <section className="testimonials">
+      {/* <section className="testimonials">
         <div className="testimonials-header">
           <h2 className="testimonials-title">What our happy clients say</h2>
-        </div>
+        </div> */}
 
         {/*
           Auto-scrolling marquee driven by rAF in the useEffect above.
@@ -858,7 +858,7 @@ export default function HomePage() {
           the loop is seamless. Hovering slows it from 60 → 20 px/s
           with a smoothed lerp (no jerk).
         */}
-        <div className="testimonials-track" ref={testTrackRef}>
+        {/* <div className="testimonials-track" ref={testTrackRef}>
           <div className="testimonials-inner" ref={testInnerRef}>
             {[...TESTIMONIALS, ...TESTIMONIALS].map((t, i) => (
               <article
@@ -895,8 +895,8 @@ export default function HomePage() {
               </article>
             ))}
           </div>
-        </div>
-      </section>
+        </div> */}
+      {/* </section> */}
       <Footer />
     </div>
   );
