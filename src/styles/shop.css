@@ -389,6 +389,7 @@
   .product-card-3__overlay {
     opacity: 1;
     pointer-events: auto;
+    justify-content: flex-end;    /* share is hidden, so pin basket to the bottom */
     background: linear-gradient(180deg,
       rgba(63, 47, 34, 0) 45%,
       rgba(63, 47, 34, 0.48) 100%);
