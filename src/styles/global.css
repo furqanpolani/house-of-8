@@ -4782,38 +4782,76 @@ button {
 
 /* ============================================================
    HERO — "The Collection of Eight"
-   Copy on the left, sphere side table standing on the hero's
-   bottom edge on the right. Scoped to .hero--collection so it
-   overrides the older layered hero rules above.
-   Sizes are in CSS px; `html { zoom: 0.8 }` renders them at 80%.
+   Built from the 1920px XD design. --u is one design pixel:
+   1920 design px = 100vw, and `html { zoom: 0.8 }` shrinks CSS px,
+   so 1u = 100vw / (1920 × 0.8). Desktop sizes scale with the width
+   exactly like the artboard. Scoped to .hero--collection so it
+   overrides the older hero rules above.
+
+   Title font is Nigelina (design spec: 75px / 90px). It isn't
+   bundled yet, so Libre Caslon Display stands in; it runs ~12%
+   narrower, hence the 84u size. Drop to 75u once Nigelina loads.
    ============================================================ */
+.hero--collection {
+  --u: calc(100vw / 1536);
+  --hero-serif: 'Nigelina', 'Libre Caslon Display', Georgia, serif;
+}
+
 .hero-eyebrow {
   font-family: var(--font-body);
-  font-size: 15px;
-  font-weight: 500;
-  letter-spacing: 0.06em;
+  font-size: max(12px, calc(17 * var(--u)));
+  font-weight: 400;
   text-transform: uppercase;
-  color: var(--dark);
-  opacity: 0.85;
-  margin-bottom: 18px;
+  color: var(--green);
+  margin-bottom: calc(6 * var(--u));
 }
 
 .hero--collection .hero-title {
-  font-size: clamp(36px, 5.4vw, 92px);
-  line-height: 1.12;
+  font-family: var(--hero-serif);
+  font-weight: 400;
+  font-size: max(34px, calc(84 * var(--u)));
+  line-height: 1.07;
+  letter-spacing: -0.012em;
+  /* Nigelina is heavier than the stand-in; thicken the strokes. */
+  -webkit-text-stroke: 0.014em currentColor;
   max-width: none;
-  margin-bottom: 30px;
+  margin-bottom: calc(26 * var(--u));
 }
 
 .hero--collection .hero-sub {
-  font-size: clamp(14px, 1.2vw, 19px);
-  max-width: 62ch;
-  margin-bottom: 44px;
+  font-size: max(14px, calc(18 * var(--u)));
+  line-height: 1.72;
+  color: #8f8f8f;
+  opacity: 1;
+  max-width: max(320px, calc(810 * var(--u)));
+  margin-bottom: calc(24 * var(--u));
+}
+
+.hero--collection .hero-left .btn {
+  font-family: 'Urbanist', var(--font-body);
+  font-weight: 400;
+  font-size: max(15px, calc(24 * var(--u)));
+  border-radius: max(6px, calc(10 * var(--u)));
+  min-height: max(44px, calc(61 * var(--u)));
+  padding: 0 max(18px, calc(20 * var(--u)));
+  gap: calc(12 * var(--u));
+}
+.hero--collection .hero-left .btn .btn-icon { transform: scale(1.35); }
+
+/* The PNG carries its own floor shadow; the inherited drop-shadow
+   filter painted a white haze over the watermark behind the table. */
+.hero--collection .hero-table { filter: none; }
+
+/* Background word — same serif as the title, as in the design. */
+.hero--collection .hero-watermark {
+  font-family: var(--hero-serif);
+  font-weight: 400;
+  letter-spacing: -0.03em;
+  color: #f2f1ef;
 }
 
 /* Scroll cue: solid grey pill so it reads on the white hero. */
 .hero--collection .hero-scroll {
-  bottom: 40px;
   width: 26px;
   height: 40px;
   padding-top: 8px;
@@ -4825,52 +4863,62 @@ button {
   height: 14px;
   stroke: #ffffff;
 }
-.hero--collection .hero-scroll:hover {
-  background: rgba(41, 42, 46, 0.85);
-}
-.hero--collection .hero-scroll:hover svg {
-  stroke: #ffffff;
-}
+.hero--collection .hero-scroll:hover        { background: rgba(41, 42, 46, 0.85); }
+.hero--collection .hero-scroll:hover svg    { stroke: #ffffff; }
 
 /* Side-by-side layout: tablets and up. */
 @media (min-width: 769px) {
   .hero--collection {
-    min-height: clamp(640px, 88vh, 1100px);
+    min-height: calc(90px + 773 * var(--u));   /* header + design hero */
+    align-items: stretch;
+    /* Let the table overlap the next section (as designed) while still
+       clipping the oversized watermark sideways. */
+    overflow-x: clip;
+    overflow-y: visible;
   }
   .hero--collection .hero-inner {
     position: static;           /* so .hero is the table's containing block */
     min-height: 0;
-    padding-block: 32px 96px;
+    padding: 0 0 0 calc(148 * var(--u));
   }
   .hero--collection .hero-left {
-    flex: 0 0 58%;
+    flex: 0 0 auto;
+    width: calc(1000 * var(--u));
     padding-top: 0;
   }
-  /* The table is positioned against the hero itself so its base
-     sits on the section's bottom edge whatever the copy height. */
   .hero--collection .hero-right {
     position: static;
     height: auto;
     min-height: 0;
   }
+  /* The table stands on (and slightly overlaps) the hero's bottom edge. */
   .hero--collection .hero-table {
-    right: clamp(24px, 10vw, 260px);
-    bottom: -1%;
-    width: clamp(380px, 37vw, 760px);
+    right: calc(174 * var(--u));
+    bottom: calc(-64 * var(--u));
+    width: calc(605 * var(--u));
+  }
+  .hero--collection .hero-watermark {
+    font-size: calc(668 * var(--u));
+    bottom: calc(-86 * var(--u));
+  }
+  .hero--collection .hero-scroll {
+    width: calc(37 * var(--u));
+    height: calc(53 * var(--u));
+    bottom: calc(92 * var(--u));
+    padding-top: calc(10 * var(--u));
   }
 }
 
-/* Tablet: give the table a little less width so it clears the copy. */
+/* Tablet: keep the table clear of the copy. */
 @media (min-width: 769px) and (max-width: 1024px) {
-  .hero--collection             { min-height: clamp(560px, 62vh, 900px); }
-  .hero--collection .hero-left  { flex-basis: 56%; }
+  .hero--collection .hero-left  { width: 56%; }
   .hero--collection .hero-table { right: 3vw; width: 40vw; }
 }
 
 /* Phones: copy centred on top, table below it. */
 @media (max-width: 768px) {
   .hero--collection .hero-inner { gap: 8px; }
-  .hero--collection .hero-title { font-size: clamp(30px, 8.4vw, 44px); }
+  .hero--collection .hero-title { font-size: clamp(30px, 8.6vw, 46px); line-height: 1.1; }
   .hero--collection .hero-sub   { margin-bottom: 28px; }
   .hero--collection .hero-right { min-height: 0; }
   .hero--collection .hero-table {
