@@ -481,7 +481,7 @@ export default function HomePage() {
       <Header />
 
       {/* ══════════════ HERO ══════════════ */}
-      <section className="hero">
+      <section className="hero hero--collection">
         <div className="hero-watermark" aria-hidden="true">LUXURY</div>
 
         {/*
@@ -498,40 +498,30 @@ export default function HomePage() {
           className="hero-preload"
         />
 
-        {/* Left vase — anchored to the far-left edge of the hero */}
-        
-
-        {/* Right vase — companion piece next to the coffee table */}
-        <img
-          src="/assets/Mask Group 26.png"
-          alt=""
-          className="hero-vase hero-vase--right"
-          aria-hidden="true"
-        />
-
         <div className="hero-inner">
           <div className="hero-left">
-            <h1 className="hero-title">Sculptural. Natural. Timeless.</h1>
+            <p className="hero-eyebrow">The Collection of Eight</p>
+            <h1 className="hero-title">
+              One stone. Eight forms.<br />
+              Every home its centerpiece.
+            </h1>
             <p className="hero-sub">
-              What matters to us is timeless design,<br />
-              sustainable quality and ecological awareness.
+              Hand-carved from solid travertine, each House of 8 creation transforms
+              natural stone into a sculptural statement. Distinct in form. Timeless in presence.
             </p>
-<Link to="/shop" className="btn btn--green btn--swap">
-  Shop Now <BtnArrow />
-</Link></div>
+            <Link to="/shop" className="btn btn--green btn--swap">
+              Explore the Collection <BtnArrow />
+            </Link>
+          </div>
 
-          {/*
-            hero-right holds the invisible anchor for the scroll-driven
-            fly image. Keeping the anchor inside this right column ensures
-            the fly clone lands on the right half of the hero and never
-            overlaps the copy in .hero-left.
-          */}
-<div className="hero-right" >            
-  <img
+          <div className="hero-right">
+            <img
               ref={heroTableRef}
-              src="/assets/Group 31910.png"
-              alt="Stone coffee table with ceramic vase"
+              src="/assets/hero-sphere-table.png"
+              srcSet="/assets/hero-sphere-table.png 1x, /assets/hero-sphere-table@2x.png 2x"
+              alt="Orbelle travertine sphere side table"
               className="hero-table"
+              fetchpriority="high"
             />
           </div>
         </div>

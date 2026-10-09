@@ -4779,3 +4779,102 @@ button {
     display: none;
   }
 }
+
+/* ============================================================
+   HERO — "The Collection of Eight"
+   Copy on the left, sphere side table standing on the hero's
+   bottom edge on the right. Scoped to .hero--collection so it
+   overrides the older layered hero rules above.
+   Sizes are in CSS px; `html { zoom: 0.8 }` renders them at 80%.
+   ============================================================ */
+.hero-eyebrow {
+  font-family: var(--font-body);
+  font-size: 15px;
+  font-weight: 500;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  color: var(--dark);
+  opacity: 0.85;
+  margin-bottom: 18px;
+}
+
+.hero--collection .hero-title {
+  font-size: clamp(36px, 5.4vw, 92px);
+  line-height: 1.12;
+  max-width: none;
+  margin-bottom: 30px;
+}
+
+.hero--collection .hero-sub {
+  font-size: clamp(14px, 1.2vw, 19px);
+  max-width: 62ch;
+  margin-bottom: 44px;
+}
+
+/* Scroll cue: solid grey pill so it reads on the white hero. */
+.hero--collection .hero-scroll {
+  bottom: 40px;
+  width: 26px;
+  height: 40px;
+  padding-top: 8px;
+  border: none;
+  background: rgba(41, 42, 46, 0.5);
+}
+.hero--collection .hero-scroll svg {
+  width: 14px;
+  height: 14px;
+  stroke: #ffffff;
+}
+.hero--collection .hero-scroll:hover {
+  background: rgba(41, 42, 46, 0.85);
+}
+.hero--collection .hero-scroll:hover svg {
+  stroke: #ffffff;
+}
+
+/* Side-by-side layout: tablets and up. */
+@media (min-width: 769px) {
+  .hero--collection {
+    min-height: clamp(640px, 88vh, 1100px);
+  }
+  .hero--collection .hero-inner {
+    position: static;           /* so .hero is the table's containing block */
+    min-height: 0;
+    padding-block: 32px 96px;
+  }
+  .hero--collection .hero-left {
+    flex: 0 0 58%;
+    padding-top: 0;
+  }
+  /* The table is positioned against the hero itself so its base
+     sits on the section's bottom edge whatever the copy height. */
+  .hero--collection .hero-right {
+    position: static;
+    height: auto;
+    min-height: 0;
+  }
+  .hero--collection .hero-table {
+    right: clamp(24px, 10vw, 260px);
+    bottom: -1%;
+    width: clamp(380px, 37vw, 760px);
+  }
+}
+
+/* Tablet: give the table a little less width so it clears the copy. */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .hero--collection             { min-height: clamp(560px, 62vh, 900px); }
+  .hero--collection .hero-left  { flex-basis: 56%; }
+  .hero--collection .hero-table { right: 3vw; width: 40vw; }
+}
+
+/* Phones: copy centred on top, table below it. */
+@media (max-width: 768px) {
+  .hero--collection .hero-inner { gap: 8px; }
+  .hero--collection .hero-title { font-size: clamp(30px, 8.4vw, 44px); }
+  .hero--collection .hero-sub   { margin-bottom: 28px; }
+  .hero--collection .hero-right { min-height: 0; }
+  .hero--collection .hero-table {
+    width: min(78vw, 380px);
+    max-width: none;
+  }
+}
