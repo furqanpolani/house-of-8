@@ -594,6 +594,72 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════ CRAFT — full-width room shot + split panels ══════════════ */}
+      <section className="craft">
+        {/* Monstera leaf straddling the room shot and the green panel */}
+        <img
+          src="/assets/tropical-leaves.png"
+          alt=""
+          aria-hidden="true"
+          className="craft__leaf"
+        />
+
+        <div
+          className="craft__banner"
+          style={{ backgroundImage: "url('/assets/home-sec-4/background-with-table.jpg')" }}
+        >
+          <div className="comfort-text comfort-text--light craft__copy craft__copy--banner">
+            <h2 className="comfort-heading craft__heading">
+              Not Just Made for Spaces.<br />
+              Made to Define Them.
+            </h2>
+            <p className="comfort-body">
+              Some pieces simply fill a room. Others make it unforgettable.
+              Discover sculptural creations designed to become the centerpiece of your space.
+            </p>
+            <Link to="/shop" className="btn btn--white craft__btn">
+              Explore Collection <BtnArrow />
+            </Link>
+          </div>
+        </div>
+
+        <div className="craft__split">
+          <div
+            className="craft__panel"
+            style={{ backgroundImage: "url('/assets/home-sec-4/green-backgroung.png')" }}
+          >
+            <div className="comfort-text comfort-text--light craft__copy">
+              <p className="craft__eyebrow">Our Craft</p>
+              <h3 className="comfort-heading craft__heading">
+                The Beauty of<br />
+                the Unrepeatable.
+              </h3>
+              <p className="comfort-body">
+                Every House of 8 piece begins with a solid block of natural stone. Shaped by hand
+                rather than mass-produced, each creation retains the distinctive veins, pores, and
+                subtle imperfections that make travertine extraordinary.
+              </p>
+              <p className="comfort-body">
+                No molds. No replicas. Just the natural beauty of stone, interpreted through craftsmanship.
+              </p>
+            </div>
+          </div>
+          <div
+            className="craft__panel craft__panel--photo"
+            role="img"
+            aria-label="Artisan hand-carving a block of travertine"
+            style={{ backgroundImage: "url('/assets/home-sec-4/stone-cutting.jpg')" }}
+          >
+            <img
+              src="/assets/u3851352797_a_single_ruscus_stem_with_pointed_leaves_loose_so_9d8289cb-e609-4197-a420-f1dab77214c8_02.png"
+              alt=""
+              aria-hidden="true"
+              className="craft__stem"
+            />
+          </div>
+        </div>
+      </section>
+
       {/* ══════════════ BEST SELLING ══════════════
         Wrapped in .bestselling-pin-wrap so the section can be pinned
         (position: sticky) while the horizontal filmstrip slides all

@@ -5017,3 +5017,143 @@ button {
     scroll-snap-align: center;
   }
 }
+
+/* ============================================================
+   CRAFT — full-width room shot over a green / photo split
+   Text uses the site's comfort-* styles (display serif headings,
+   Poppins body) and is only resized here. --u is one design px
+   (see the hero block) so the layout keeps the 1920 artboard's
+   proportions on desktop.
+   ============================================================ */
+.craft {
+  --u: calc(100vw / 1536);
+  position: relative;
+  overflow-x: clip;                     /* leaves bleed off the edges */
+}
+
+.craft__banner,
+.craft__panel {
+  position: relative;
+  background-size: cover;
+  background-position: center;
+}
+
+.craft__banner {
+  height: calc(640 * var(--u));         /* 1920 × 640 artboard band */
+  display: flex;
+  align-items: center;
+}
+
+.craft__split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+.craft__panel {
+  height: calc(655 * var(--u));
+  display: flex;
+  align-items: center;
+}
+.craft__panel--photo { overflow: hidden; }   /* crops the corner stem */
+
+.craft__copy {
+  position: relative;
+  z-index: 4;                           /* always in front of the leaf */
+}
+.craft__copy--banner {
+  margin-left: calc(1175 * var(--u));
+  max-width: calc(640 * var(--u));
+}
+.craft__copy--banner .comfort-body { max-width: calc(560 * var(--u)); }
+.craft__panel .craft__copy {
+  margin-left: calc(142 * var(--u));
+  max-width: calc(680 * var(--u));
+}
+
+.craft__eyebrow {
+  font-family: var(--font-body);
+  font-size: max(11px, calc(15 * var(--u)));
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: rgba(255, 255, 255, 0.85);
+  margin-bottom: calc(16 * var(--u));
+}
+
+.craft .craft__heading {
+  font-size: max(26px, calc(52 * var(--u)));
+  line-height: 1.15;
+  margin-bottom: calc(22 * var(--u));
+}
+
+.craft .comfort-body {
+  font-size: max(13px, calc(16 * var(--u)));
+  line-height: 1.9;
+}
+.craft .comfort-body + .comfort-body {
+  margin-top: calc(22 * var(--u));
+}
+
+/* White pill button on the dark room shot. */
+.btn--white {
+  background: var(--white);
+  color: var(--dark);
+  border: none;
+}
+.btn--white:hover {
+  background: #f1efea;
+}
+.craft__btn {
+  display: inline-flex;
+  margin-top: calc(36 * var(--u));
+  font-size: max(13px, calc(22 * var(--u)));
+  padding: max(11px, calc(17 * var(--u))) max(18px, calc(24 * var(--u)));
+  border-radius: max(6px, calc(10 * var(--u)));
+}
+
+.craft__leaf {
+  position: absolute;
+  z-index: 3;
+  left: calc(-170 * var(--u));
+  top: calc(320 * var(--u));
+  width: calc(580 * var(--u));
+  max-width: none;
+  transform: scaleX(-1) rotate(-12deg);
+  pointer-events: none;
+}
+
+.craft__stem {
+  position: absolute;
+  right: calc(-130 * var(--u));
+  bottom: calc(-150 * var(--u));
+  width: calc(560 * var(--u));
+  max-width: none;
+  transform: rotate(-20deg);
+  pointer-events: none;
+}
+
+/* Phones: stack everything; darken the room shot so copy stays legible. */
+@media (max-width: 768px) {
+  .craft__banner {
+    height: auto;
+    min-height: 520px;
+    align-items: flex-end;
+    background-position: 30% center;
+  }
+  .craft__banner::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(20, 14, 8, 0.25) 0%, rgba(20, 14, 8, 0.78) 55%, rgba(20, 14, 8, 0.85) 100%);
+  }
+  .craft__copy--banner .comfort-body { max-width: none; }
+  .craft__copy--banner,
+  .craft__panel .craft__copy {
+    margin: 0;
+    max-width: none;
+    padding: 40px var(--side-pad);
+  }
+  .craft__split { grid-template-columns: 1fr; }
+  .craft__panel { height: auto; }
+  .craft__panel--photo { aspect-ratio: 4 / 3; }
+  .craft__leaf { width: 220px; left: -80px; top: 380px; }
+  .craft__stem { width: 220px; right: -60px; bottom: -70px; }
+}
