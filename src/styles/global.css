@@ -4994,13 +4994,20 @@ button {
 .collection-intro__item--2 { height: calc(474 * var(--u)); }
 .collection-intro__item--3 { height: calc(429 * var(--u)); }
 
+/* Side tables are softly out of focus so the centre piece leads. */
+.collection-intro__item--1,
+.collection-intro__item--3 {
+  filter: blur(max(2px, calc(5 * var(--u))));
+}
+
 /* Phones: the three tables become a swipeable row. */
 @media (max-width: 768px) {
   .collection-intro { padding: 48px 0 40px; }
   .collection-intro .section-header,
   .collection-intro__desc { padding: 0 var(--side-pad); }
   .collection-intro__desc { max-width: none; margin: 14px 0 26px; }
-  .collection-intro__leaf { width: 200px; top: -110px; right: -70px; }
+  /* Smaller and lower so it no longer covers the brand copy above. */
+  .collection-intro__leaf { width: 150px; top: -46px; right: -62px; }
   .collection-intro__row {
     justify-content: flex-start;
     gap: 24px;
@@ -5016,6 +5023,9 @@ button {
     height: auto !important;
     scroll-snap-align: center;
   }
+  /* No "sides" in a swipe row — every table is in focus. */
+  .collection-intro__item--1,
+  .collection-intro__item--3 { filter: none; }
 }
 
 /* ============================================================
@@ -5156,4 +5166,148 @@ button {
   .craft__panel--photo { aspect-ratio: 4 / 3; }
   .craft__leaf { width: 220px; left: -80px; top: 380px; }
   .craft__stem { width: 220px; right: -60px; bottom: -70px; }
+}
+
+/* ============================================================
+   THE ART OF BEING DIFFERENT — rounded room panel, a figure
+   stepping out of it on the right, a branch hanging into the
+   top-left corner and the LUXURY watermark behind. Text uses the
+   site's comfort-* styles. --u is one design px (see hero block).
+   ============================================================ */
+.art-diff {
+  --u: calc(100vw / 1536);
+  position: relative;
+  height: calc(1010 * var(--u));
+  overflow: hidden;
+  background: var(--white);
+}
+
+.art-diff__watermark {
+  position: absolute;
+  left: 50%;
+  top: calc(400 * var(--u));
+  transform: translateX(-50%);
+  font-family: var(--font-display);
+  font-weight: 700;
+  font-size: calc(600 * var(--u));
+  line-height: 1;
+  color: rgba(41, 42, 46, 0.05);
+  white-space: nowrap;
+  pointer-events: none;
+  user-select: none;
+}
+
+.art-diff__panel {
+  position: absolute;
+  left: calc(140 * var(--u));
+  top: calc(216 * var(--u));
+  width: calc(1639 * var(--u));
+  height: calc(669 * var(--u));
+  background-size: 100% 100%;           /* corners are baked into the PNG */
+  display: flex;
+  align-items: center;
+}
+
+.art-diff__copy {
+  margin-left: calc(138 * var(--u));
+  max-width: calc(800 * var(--u));
+}
+.art-diff .art-diff__heading {
+  font-size: max(26px, calc(66 * var(--u)));
+  line-height: 1.1;
+  margin-bottom: calc(22 * var(--u));
+}
+.art-diff .comfort-body {
+  font-size: max(13px, calc(17 * var(--u)));
+  line-height: 1.65;
+  max-width: calc(450 * var(--u));
+}
+.art-diff__btn {
+  display: inline-flex;
+  margin-top: calc(40 * var(--u));
+  font-size: max(13px, calc(22 * var(--u)));
+  padding: max(11px, calc(15 * var(--u))) max(18px, calc(24 * var(--u)));
+  border-radius: max(6px, calc(10 * var(--u)));
+}
+
+.art-diff__figure {
+  position: absolute;
+  left: calc(1229 * var(--u));
+  top: calc(58 * var(--u));
+  width: calc(566 * var(--u));
+  max-width: none;
+  height: auto;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.art-diff__branch {
+  position: absolute;
+  left: calc(-4 * var(--u));
+  top: calc(-38 * var(--u));
+  width: calc(409 * var(--u));
+  max-width: none;
+  z-index: 3;
+  pointer-events: none;
+}
+
+/* Phones: panel on top with the copy, figure below it. */
+@media (max-width: 768px) {
+  .art-diff {
+    height: auto;
+    padding: 70px var(--side-pad) 0;
+  }
+  .art-diff__watermark { display: none; }
+  .art-diff__panel {
+    position: relative;
+    left: auto;
+    top: auto;
+    width: 100%;
+    height: auto;
+    min-height: 360px;
+    background-size: cover;
+    background-position: 20% center;
+    border-radius: 18px;
+    padding: 40px 24px 150px;
+    align-items: flex-start;
+  }
+  .art-diff__copy { margin: 0; max-width: none; }
+  .art-diff .comfort-body { max-width: none; }
+  .art-diff__figure {
+    position: relative;
+    left: auto;
+    top: auto;
+    display: block;
+    width: min(62vw, 300px);
+    margin: -170px 4px 0 auto;
+  }
+  .art-diff__branch { width: 110px; left: -14px; top: -6px; }
+  .art-diff__copy { position: relative; z-index: 4; padding-top: 18px; }
+}
+
+/* Best Selling cards on small phones: the overlay caption covered half
+   of each product, so the caption moves below the photo (as on the
+   shop page cards). */
+@media (max-width: 560px) {
+  .shop-showcase__grid { grid-auto-rows: auto; }
+  .shop-showcase__card {
+    height: auto;
+    display: flex;
+    flex-direction: column;
+    background: transparent;
+  }
+  .shop-showcase__card-img {
+    height: auto;
+    aspect-ratio: 1 / 1;
+    background: #f0efed;
+  }
+  .shop-showcase__card:hover .shop-showcase__card-img { transform: none; }
+  .shop-showcase__card-overlay {
+    position: static;
+    background: none;
+    padding: 10px 2px 4px;
+    color: var(--dark);
+  }
+  .shop-showcase__card-name     { color: var(--green); font-size: 16px; }
+  .shop-showcase__card-material { opacity: 0.6; }
 }

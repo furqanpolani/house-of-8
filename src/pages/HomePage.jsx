@@ -517,8 +517,8 @@ export default function HomePage() {
           <div className="hero-right">
             <img
               ref={heroTableRef}
-              src="/assets/hero-sphere-table.png"
-              srcSet="/assets/hero-sphere-table.png 1x, /assets/hero-sphere-table@2x.png 2x"
+              src="/assets/topbannerimage.png"
+              srcSet="/assets/topbannerimage.png, /assets/topbannerimage.png"
               alt="Orbelle travertine sphere side table"
               className="hero-table"
               fetchpriority="high"
@@ -650,12 +650,12 @@ export default function HomePage() {
             aria-label="Artisan hand-carving a block of travertine"
             style={{ backgroundImage: "url('/assets/home-sec-4/stone-cutting.jpg')" }}
           >
-            <img
+            {/* <img
               src="/assets/u3851352797_a_single_ruscus_stem_with_pointed_leaves_loose_so_9d8289cb-e609-4197-a420-f1dab77214c8_02.png"
               alt=""
               aria-hidden="true"
               className="craft__stem"
-            />
+            /> */}
           </div>
         </div>
       </section>
@@ -669,20 +669,13 @@ export default function HomePage() {
         Once phase 2 completes, the pin releases and normal vertical
         scroll resumes.
       */}
-      <div className="bestselling-pin-wrap">
+      {/* <div className="bestselling-pin-wrap">
         <section className="bestselling">
           <div className="section-header mt-top">
             <span className="dash">&mdash;</span>
             <h2 className="section-title section-title--gold">Our Best Selling Products</h2>
             <span className="dash">&mdash;</span>
           </div>
-
-          {/*
-            Filmstrip placed FIRST (right below the section header) so
-            the descent lands the image high up in the section, well
-            above the Shop Now button. The 4 copies slide horizontally
-            during phase 2.
-          */}
           <p className="section-desc" >
             Inspired by nature.Designed to last.Made to belong.
           </p>
@@ -706,10 +699,10 @@ export default function HomePage() {
             Shop Now <BtnArrow />
           </Link>
         </section>
-      </div>
+      </div> */}
 
       {/* ══════════════ EXPLORE PROJECTS ══════════════ */}
-      <section className="explore">
+      {/* <section className="explore">
         <div
           className="explore-bg"
           style={{ backgroundImage: "url('/assets/Group 31913.png')" }}
@@ -724,11 +717,11 @@ export default function HomePage() {
             View Portfolio <BtnArrow />
           </a>
         </div>
-      </section>
+      </section> */}
 
       {/* ══════════════ DETAILED COMFORT — SPLIT PANELS ══════════════ */}
-      <section className="comfort-split">
-        {/* LEFT — dark linen panel, tropical leaves overlay at top-left */}
+      {/* <section className="comfort-split">
+      
         <div
           className="comfort-panel"
           style={{ backgroundImage: "url('/assets/Mask Group 31.png')" }}
@@ -748,8 +741,6 @@ export default function HomePage() {
             </p>
           </div>
         </div>
-
-        {/* RIGHT — stone panel, olive branch overlay at bottom-right */}
         <div
           className="comfort-panel"
           style={{ backgroundImage: "url('/assets/Mask Group 32.png')" }}
@@ -770,7 +761,7 @@ export default function HomePage() {
           />
         </div>
         
-      </section>
+      </section> */}
 
       {/* ══════════════ DETAILED COMFORT — INTERIOR ══════════════ */}
       {/* <section className="comfort-interior"> */}
@@ -809,12 +800,12 @@ export default function HomePage() {
         right. Replaces the previous filter buttons + 4-up cards.
       */}
       <section className="shop" id="shop">
-        <img
+        {/* <img
           src="/assets/u3851352797_a_single_ruscus_stem_with_pointed_leaves_loose_so_9d8289cb-e609-4197-a420-f1dab77214c8_02.png"
           alt=""
           aria-hidden="true"
           className="shop-leaf"
-        />
+        /> */}
         <div className="section-header">
           <span className="dash">&mdash;</span>
           <h2 className="section-title section-title--gold">Our Best Selling Products</h2>
@@ -901,13 +892,44 @@ export default function HomePage() {
 
 
 
+      {/* ══════════════ THE ART OF BEING DIFFERENT ══════════════ */}
+      <section className="art-diff">
+        <div className="art-diff__watermark" aria-hidden="true">LUXURY</div>
+        <img
+          src="/assets/art of different/tree-branch.png"
+          alt=""
+          aria-hidden="true"
+          className="art-diff__branch"
+        />
+        <div
+          className="art-diff__panel"
+          style={{ backgroundImage: "url('/assets/art of different/background.png')" }}
+        >
+          <div className="comfort-text comfort-text--light art-diff__copy">
+            <h2 className="comfort-heading art-diff__heading">The Art of Being Different.</h2>
+            <p className="comfort-body">
+              No two stones tell the same story. Every House of 8 creation carries its own
+              natural markings, subtle variations, and unmistakable character.
+            </p>
+            <Link to="/shop" className="btn btn--green btn--swap art-diff__btn">
+              Discover Our Craft <BtnArrow />
+            </Link>
+          </div>
+        </div>
+        <img
+          src="/assets/art of different/human-image.png"
+          alt="Woman placing books on a travertine sphere side table"
+          className="art-diff__figure"
+          width="563"
+          height="971"
+          loading="lazy"
+        />
+      </section>
+
       {/* ══════════════ DETAILED COMFORT (fabric/ottoman) ══════════════ */}
-      <section className="comfort-detail">
+      {/* <section className="comfort-detail">
         <div className="comfort-detail__watermark" aria-hidden="true">LUXURY</div>
         <div className="comfort-detail__container">
-          {/* Olive-branch decorative leaves intentionally removed per design.
-              The `.comfort-detail__leaves` rule still lives in shop.css for
-              the Shop page's Detailed Comfort block. */}
           <div className="comfort-detail__text">
             <h2 className="comfort-detail__heading">Detailed Comfort.</h2>
             <p className="comfort-detail__desc">
@@ -920,20 +942,13 @@ export default function HomePage() {
               View Portfolio <BtnArrow />
             </a>
           </div>
-          {/*
-            Ottoman/pouf — overflows the container's right and bottom
-            edges. `.comfort-detail__ottoman` (shop.css) handles the
-            absolute positioning, size and z-index. The asset lives in
-            /assets/2/, not /assets/ — Vite serves the repo-root
-            `assets` folder at /assets, so the `2/` segment matters.
-          */}
           <img
             src="/assets/2/Group 31934.png"
             alt="Olive-print ottoman with sage green cushion"
             className="comfort-detail__ottoman"
           />
         </div>
-      </section>
+      </section> */}
       {/* ══════════════ TESTIMONIALS ══════════════ */}
       {/* <section className="testimonials">
         <div className="testimonials-header">
