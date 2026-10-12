@@ -564,6 +564,36 @@ export default function HomePage() {
         </div>
       </section>
 
+      {/* ══════════════ THE COLLECTION OF EIGHT — intro ══════════════ */}
+      <section className="collection-intro">
+        {/* Monstera leaf straddling the edge with the green section above */}
+        <img
+          src="/assets/tropical-leaves.png"
+          alt=""
+          aria-hidden="true"
+          className="collection-intro__leaf"
+        />
+        <div className="section-header">
+          <span className="dash">&mdash;</span>
+          <h2 className="section-title section-title--gold">Introducing The Collection of Eight</h2>
+          <span className="dash">&mdash;</span>
+        </div>
+        <p className="collection-intro__desc">
+          One material. Eight distinct expressions.<br />
+          Discover our debut collection of hand-carved travertine pieces, where natural textures
+          meet unexpected forms. Each creation explores a different possibility of stone, bringing
+          its own personality into your space.
+        </p>
+        <Link to="/shop" className="btn btn--green btn--swap collection-intro__cta">
+          Discover the Collection <BtnArrow />
+        </Link>
+        <div className="collection-intro__row">
+          <img src="/assets/products/product 1.png" alt="Fluted travertine side table" className="collection-intro__item collection-intro__item--1" loading="lazy" />
+          <img src="/assets/products/product 2.png" alt="Travertine sphere side table" className="collection-intro__item collection-intro__item--2" loading="lazy" />
+          <img src="/assets/products/product 3.png" alt="Travertine pedestal coffee table" className="collection-intro__item collection-intro__item--3" loading="lazy" />
+        </div>
+      </section>
+
       {/* ══════════════ BEST SELLING ══════════════
         Wrapped in .bestselling-pin-wrap so the section can be pinned
         (position: sticky) while the horizontal filmstrip slides all

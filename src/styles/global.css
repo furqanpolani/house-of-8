@@ -4926,3 +4926,94 @@ button {
     max-width: none;
   }
 }
+
+/* ============================================================
+   COLLECTION INTRO — "Introducing The Collection of Eight"
+   Sits between the green brand band and Best Selling. Sizes use
+   design pixels (--u, see the hero block above) so the three
+   tables keep the artboard's proportions at any desktop width.
+   ============================================================ */
+.collection-intro {
+  --u: calc(100vw / 1536);
+  position: relative;
+  z-index: 1;                       /* leaf paints over the brand band */
+  overflow-x: clip;                 /* leaf bleeds off the right edge */
+  overflow-y: visible;
+  background: var(--white);
+  text-align: center;
+  padding: calc(50 * var(--u)) var(--side-pad) calc(56 * var(--u));
+}
+
+.collection-intro__leaf {
+  position: absolute;
+  top: calc(-330 * var(--u));
+  right: calc(-260 * var(--u));
+  width: calc(680 * var(--u));
+  max-width: none;
+  pointer-events: none;
+  z-index: 2;
+}
+
+.collection-intro .section-title {
+  font-size: max(24px, calc(55 * var(--u)));
+}
+.collection-intro .dash {
+  font-size: max(20px, calc(34 * var(--u)));
+}
+
+.collection-intro__desc {
+  font-family: var(--font-body);
+  font-size: max(13px, calc(17 * var(--u)));
+  line-height: 1.85;
+  color: #8f8f8f;
+  max-width: calc(1080 * var(--u));
+  margin: calc(14 * var(--u)) auto calc(12 * var(--u));
+}
+
+.collection-intro__cta {
+  display: inline-flex;
+  font-size: max(13px, calc(20 * var(--u)));
+  padding: max(12px, calc(14 * var(--u))) max(20px, calc(22 * var(--u)));
+  border-radius: max(6px, calc(9 * var(--u)));
+}
+
+.collection-intro__row {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;            /* tables share one floor line */
+  margin-top: calc(66 * var(--u));
+}
+
+.collection-intro__item {
+  width: auto;
+  max-width: none;
+  flex: none;
+}
+/* Heights from the design (the source PNGs differ in aspect ratio). */
+.collection-intro__item--1 { height: calc(436 * var(--u)); }
+.collection-intro__item--2 { height: calc(474 * var(--u)); }
+.collection-intro__item--3 { height: calc(429 * var(--u)); }
+
+/* Phones: the three tables become a swipeable row. */
+@media (max-width: 768px) {
+  .collection-intro { padding: 48px 0 40px; }
+  .collection-intro .section-header,
+  .collection-intro__desc { padding: 0 var(--side-pad); }
+  .collection-intro__desc { max-width: none; margin: 14px 0 26px; }
+  .collection-intro__leaf { width: 200px; top: -110px; right: -70px; }
+  .collection-intro__row {
+    justify-content: flex-start;
+    gap: 24px;
+    margin-top: 36px;
+    padding: 0 var(--side-pad) 8px;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+    scrollbar-width: none;
+  }
+  .collection-intro__row::-webkit-scrollbar { display: none; }
+  .collection-intro__item {
+    width: 68vw;
+    height: auto !important;
+    scroll-snap-align: center;
+  }
+}
