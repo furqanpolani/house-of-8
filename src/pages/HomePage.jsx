@@ -552,11 +552,14 @@ export default function HomePage() {
         <div className="brand-watermark brand-watermark--right" aria-hidden="true">8</div>
         <div className="brand-content">
           <p className="brand-tagline">
-            &mdash;&nbsp; Some objects fill a room. Others quietly become part of it. &nbsp;&mdash;
+            &mdash;&nbsp; Beyond Decoration. A Statement of Form. &nbsp;&mdash;
           </p>
-          <p className="brand-tagline">House of 8 makes the second kind.</p>
           <p className="brand-desc">
-            IHI is a high-end Architecture, Interior Design and Furniture studio driven by exquisite taste, unparalleled service and unmatched quality. From planning spaces with utmost precision, creating unique styles from Modern Luxury to French Parisian and executing designs with high-end furniture and finishes.
+            At House of 8, we believe the most remarkable spaces are defined by the objects within them.<br />
+            Our creations begin with natural stone and take shape through the hands of skilled artisans. Every curve, texture, and detail celebrates the character of the material, creating pieces that feel discovered rather than manufactured.
+          </p>
+          <p className="brand-desc">
+            No two pieces are ever exactly alike. And that&rsquo;s precisely the beauty.
           </p>
         </div>
       </section>
