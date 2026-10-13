@@ -80,9 +80,9 @@ export default function ShopPage() {
       </main>
 
       {/* ── DETAILED COMFORT ── */}
-      <section className="comfort-detail">
-        <div className="comfort-detail__watermark" aria-hidden="true">LUXURY</div>
-        <div className="comfort-detail__container">
+      {/* <section className="comfort-detail"> */}
+        {/* <div className="comfort-detail__watermark mt-5" aria-hidden="true">LUXURY</div> */}
+        {/* <div className="comfort-detail__container">
           <div className="comfort-detail__text">
             <h2 className="comfort-detail__heading">Detailed Comfort.</h2>
             <p className="comfort-detail__desc">
@@ -99,8 +99,8 @@ export default function ShopPage() {
             </a>
           </div>
           <img src="/assets/Group9-with-items.png" alt="Travertine tray stand with vase, candle and diffuser" className="comfort-detail__ottoman" />
-        </div>
-      </section>
+        </div> */}
+      {/* </section> */}
 
       <Footer />
     </div>
