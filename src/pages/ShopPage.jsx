@@ -36,7 +36,7 @@ export default function ShopPage() {
               sustainable quality and ecological awareness.
             </p>
           </div>
-          <img src="/assets/2/Group 31934.png" alt="Arm Chair" className="shop-banner__chair" />
+          <img src="/assets/Group9-with-items.png" alt="Coffee Table" className="shop-banner__chair" />
         </div>
       </section>
 
@@ -98,7 +98,7 @@ export default function ShopPage() {
               </svg>
             </a>
           </div>
-          <img src="/assets/2/Group 31943.png" alt="Olive Sofa" className="comfort-detail__ottoman" />
+          <img src="/assets/Group9-with-items.png" alt="Travertine tray stand with vase, candle and diffuser" className="comfort-detail__ottoman" />
         </div>
       </section>
 
