@@ -24,8 +24,12 @@ export default function OrderConfirmationPage() {
             </p>
           )}
           <p className="order-confirmed__note">
-            You will receive a confirmation email shortly.<br />
+            You will receive a confirmation call shortly.<br />
             Delivery takes 7–14 working days.
+          </p>
+
+          <p className="order-confirmed__note">
+            50% advance payment will be applied on overlay approval.
           </p>
           <div className="order-confirmed__actions">
             <Link to="/shop" className="btn btn--green">Continue Shopping →</Link>
