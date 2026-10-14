@@ -159,7 +159,7 @@ export default function ContactPage() {
                 <img src="/assets/contactus/Group 43039.svg" alt="" width="36" height="36" />
                 <div>
                   <span className="contact-details__label">Phone / WhatsApp</span>
-                  <a href="tel:+923333317121" className="contact-details__value">+92 333 3317121</a>
+                  <a href="tel:+923002788568" className="contact-details__value">+92 300 2788568</a>
                 </div>
               </div>
               <div className="contact-details__item">

@@ -419,7 +419,7 @@ export default function ProductDetailPage() {
       </section>
 
       {/* ═══════════ TESTIMONIALS ═══════════ */}
-      <section className="pd-testimonials">
+      {/* <section className="pd-testimonials">
         <h3 className="pd-testimonials__title">What our happy clients say</h3>
         <div className="pd-testimonials__row">
           {TESTIMONIALS.map((t) => (
@@ -437,7 +437,7 @@ export default function ProductDetailPage() {
             </article>
           ))}
         </div>
-      </section>
+      </section> */}
 
       <Footer />
     </div>

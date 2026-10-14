@@ -62,7 +62,7 @@ export default function Header() {
           <div className="nav-overlay__follow">
             <span className="nav-overlay__follow-label">Follow Us</span>
             <a
-              href="https://www.instagram.com/houseofeight"
+              href="https://www.instagram.com/house0f8"
               target="_blank"
               rel="noreferrer"
               className="nav-overlay__instagram"
