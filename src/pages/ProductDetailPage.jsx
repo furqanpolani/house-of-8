@@ -412,9 +412,9 @@ export default function ProductDetailPage() {
             &mdash;&nbsp; Some objects fill a room. Others quietly become part of it. &nbsp;&mdash;
           </p>
           <p className="brand-tagline">House of 8 makes the second kind.</p>
-          <p className="brand-desc">
+          {/* <p className="brand-desc">
             IHI is a high-end Architecture, Interior Design and Furniture studio driven by exquisite taste, unparalleled service and unmatched quality. From planning spaces with utmost precision, creating unique styles from Modern Luxury to French Parisian and executing designs with high-end furniture and finishes.
-          </p>
+          </p> */}
         </div>
       </section>
 
