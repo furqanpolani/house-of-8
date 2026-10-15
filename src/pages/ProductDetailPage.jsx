@@ -46,26 +46,26 @@ function handleImgError(e) {
   }
 }
 
-const TESTIMONIALS = [
-  {
-    initials: 'HS',
-    name:     'Humera Shah',
-    location: '6 BHK Villa, D.H.A Phase 6, Karachi',
-    quote:    '"We had a very good experience working with IHI. The best part about getting a home done by DC is the 10-year maintenance warranty which is part of the project contract."',
-  },
-  {
-    initials: 'AJ',
-    name:     'Ansab Jahangir',
-    location: 'Clothing Store, D.H.A Phase 7, Karachi',
-    quote:    '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great and suitable for every family member."',
-  },
-  {
-    initials: 'MJ',
-    name:     'Maria Jangda',
-    location: 'Car Showroom, D.H.A Phase 7, Karachi',
-    quote:    '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great and suitable for every family member."',
-  },
-];
+// const TESTIMONIALS = [
+//   {
+//     initials: 'HS',
+//     name:     'Humera Shah',
+//     location: '6 BHK Villa, D.H.A Phase 6, Karachi',
+//     quote:    '"We had a very good experience working with IHI. The best part about getting a home done by DC is the 10-year maintenance warranty which is part of the project contract."',
+//   },
+//   {
+//     initials: 'AJ',
+//     name:     'Ansab Jahangir',
+//     location: 'Clothing Store, D.H.A Phase 7, Karachi',
+//     quote:    '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great and suitable for every family member."',
+//   },
+//   {
+//     initials: 'MJ',
+//     name:     'Maria Jangda',
+//     location: 'Car Showroom, D.H.A Phase 7, Karachi',
+//     quote:    '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great and suitable for every family member."',
+//   },
+// ];
 
 export default function ProductDetailPage() {
   const { id }    = useParams();
