@@ -5363,3 +5363,73 @@ button {
   .collection-intro__leaf,
   .craft__leaf { animation: none; }
 }
+
+/* ============================================================
+   TYPE SCALE — one set of sizes for every section (home + shop),
+   taken from the 1920px design: section headings 55, card headings 36,
+   body 17, eyebrows 17, buttons 20 (design px). Only sizes are set here;
+   fonts and colours stay with each section.
+
+   --u is one design px. `html { zoom: 0.8 }` shrinks CSS px, so the
+   px floors are 1.25× the size actually shown (e.g. 17.5px → 14px):
+   on phones nothing drops below 14px body / 26px headings.
+   ============================================================ */
+:root {
+  --u: calc(100vw / 1536);
+  --fs-h2:      max(32px,   calc(55 * var(--u)));
+  --fs-h3:      max(26px,   calc(36 * var(--u)));
+  --fs-body:    max(17.5px, calc(17 * var(--u)));
+  --fs-eyebrow: max(14px,   calc(17 * var(--u)));
+  --fs-btn:     max(17px,   calc(20 * var(--u)));
+  --fs-dash:    max(22px,   calc(34 * var(--u)));
+}
+
+/* Section headings */
+:is(.page-home, .page-shop) :is(
+  .brand-tagline,
+  .section-title,
+  .craft .craft__heading,
+  .art-diff .art-diff__heading,
+  .shop-banner__heading,
+  .comfort-detail__heading
+) { font-size: var(--fs-h2); }
+
+:is(.page-home, .page-shop) .section-header .dash { font-size: var(--fs-dash); }
+
+/* Card headings */
+:is(.page-home, .page-shop) .shop-showcase__feature-heading { font-size: var(--fs-h3); }
+
+/* Body copy */
+:is(.page-home, .page-shop) :is(
+  .hero--collection .hero-sub,
+  .brand-desc,
+  .collection-intro__desc,
+  .craft .comfort-body,
+  .art-diff .comfort-body,
+  .p-center,
+  .section-desc,
+  .shop-banner__sub,
+  .comfort-detail__desc
+) { font-size: var(--fs-body); }
+
+/* Eyebrows (small uppercase labels) */
+:is(.page-home, .page-shop) :is(
+  .hero-eyebrow,
+  .craft__eyebrow,
+  .shop-showcase__feature-eyebrow
+) { font-size: var(--fs-eyebrow); }
+
+/* Buttons */
+:is(.page-home, .page-shop) :is(
+  .hero--collection .hero-left .btn,
+  .collection-intro__cta,
+  .craft__btn,
+  .art-diff__btn,
+  .shop .btn,
+  .comfort-detail__btn
+) { font-size: var(--fs-btn); }
+
+/* Room for the full-size heading on one line; the paragraph keeps the
+   old reading width. */
+.page-home .brand-content { max-width: min(100%, calc(1240 * var(--u))); }
+.page-home .brand-desc { max-width: max(860px, calc(1000 * var(--u))); margin-left: auto; margin-right: auto; }
