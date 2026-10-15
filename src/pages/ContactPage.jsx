@@ -73,7 +73,7 @@ export default function ContactPage() {
                       name="name"
                       value={form.name}
                       onChange={handleChange}
-                      placeholder="Shan Chandani"
+                      placeholder="full name"
                       required
                     />
                   </label>
@@ -86,7 +86,7 @@ export default function ContactPage() {
                         name="phone"
                         value={form.phone}
                         onChange={handleChange}
-                        placeholder="1300 352 287"
+                        placeholder="+92 333 1234567"
                         required
                       />
                     </label>
@@ -110,7 +110,7 @@ export default function ContactPage() {
                       name="message"
                       value={form.message}
                       onChange={handleChange}
-                      placeholder="Lorem ipsum dolor sit amet, consectetuer adipiscing elit…"
+                      placeholder="Your message"
                       required
                     />
                   </label>
