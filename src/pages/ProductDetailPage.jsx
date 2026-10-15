@@ -371,10 +371,10 @@ export default function ProductDetailPage() {
         <section className="pd-related">
           <div className="pd-related__header">
             <h3 className="pd-related__title">You might also like</h3>
-            <p className="pd-related__sub">
+            {/* <p className="pd-related__sub">
               IHI is a high-end Architecture, Interior Design and Furniture studio
               driven by exquisite taste, unparalleled service
-            </p>
+            </p> */}
           </div>
 
           <div className="pd-related__grid">

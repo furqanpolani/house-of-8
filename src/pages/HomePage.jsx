@@ -24,36 +24,36 @@ function getProductImage(p) {
   return PRODUCT_IMAGE_FALLBACK[p?.category] || PRODUCT_IMAGE_FALLBACK.default;
 }
 
-const TESTIMONIALS = [
-  {
-    initials: 'HS',
-    name: 'Humera Shah',
-    location: '6 BHK Villa, D.H.A Phase 6, Karachi',
-    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=240&h=240&fit=crop&crop=faces',
-    quote: '"I had a very good experience working with IHI. The best part about having a home done by IHI is the 10-year maintenance warranty that is part of the project contract."',
-  },
-  {
-    initials: 'AJ',
-    name: 'Ansab Jahangir',
-    location: 'Clothing Store, D.H.A Phase 7, Karachi',
-    avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=240&h=240&fit=crop&crop=faces',
-    quote: '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great."',
-  },
-  {
-    initials: 'MJ',
-    name: 'Maria Jangda',
-    location: 'Car Showroom, D.H.A Phase 7, Karachi',
-    avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=240&h=240&fit=crop&crop=faces',
-    quote: '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great."',
-  },
-  {
-    initials: 'SA',
-    name: 'Sara Ahmed',
-    location: 'Penthouse, Clifton Block 5, Karachi',
-    avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=240&h=240&fit=crop&crop=faces',
-    quote: '"From the very first consultation to the final handover, the IHI team was professional, creative, and attentive to every detail. Our penthouse looks absolutely stunning."',
-  },
-];
+// const TESTIMONIALS = [
+//   {
+//     initials: 'HS',
+//     name: 'Humera Shah',
+//     location: '6 BHK Villa, D.H.A Phase 6, Karachi',
+//     avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=240&h=240&fit=crop&crop=faces',
+//     quote: '"I had a very good experience working with IHI. The best part about having a home done by IHI is the 10-year maintenance warranty that is part of the project contract."',
+//   },
+//   {
+//     initials: 'AJ',
+//     name: 'Ansab Jahangir',
+//     location: 'Clothing Store, D.H.A Phase 7, Karachi',
+//     avatar: 'https://images.unsplash.com/photo-1500648767791-00dcc994a43e?w=240&h=240&fit=crop&crop=faces',
+//     quote: '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great."',
+//   },
+//   {
+//     initials: 'MJ',
+//     name: 'Maria Jangda',
+//     location: 'Car Showroom, D.H.A Phase 7, Karachi',
+//     avatar: 'https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=240&h=240&fit=crop&crop=faces',
+//     quote: '"My experience with Irtiqa Hassan Interiors was very good. High-quality products are used overall in the project. Feedback and concerns if any were solved immediately. The final outcome is great."',
+//   },
+//   {
+//     initials: 'SA',
+//     name: 'Sara Ahmed',
+//     location: 'Penthouse, Clifton Block 5, Karachi',
+//     avatar: 'https://images.unsplash.com/photo-1544005313-94ddf0286df2?w=240&h=240&fit=crop&crop=faces',
+//     quote: '"From the very first consultation to the final handover, the IHI team was professional, creative, and attentive to every detail. Our penthouse looks absolutely stunning."',
+//   },
+// ];
 
 /*
   Composited arrow used inside every .btn — a thin shaft plus an
