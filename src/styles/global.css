@@ -441,7 +441,7 @@ button {
 /* ── Nav overlay (full-width, below header) ───────────────────── */
 .nav-overlay {
   position: fixed;
-  top: 84px;           /* matches header height: 22px padding top + ~18px content + 22px padding bottom + 1px border */
+  top: calc(var(--header-h, 84px) - 1px);  /* tucks under the header (height set by Header.jsx) */
   left: 0;
   right: 0;
   bottom: 0;
@@ -512,6 +512,36 @@ button {
   line-height: 1.3;
 }
 .nav-overlay__cat-link:hover { color: #fff; }
+
+/* Product names: centred, a little lighter than the old categories. */
+.nav-overlay__categories { align-items: center; margin-bottom: 30px; }
+.nav-overlay__categories .nav-overlay__cat-link {
+  font-size: clamp(17px, 2.2vw, 22px);
+  padding: 7px 0;
+  text-align: center;
+}
+
+/* "Shop All" — solid cream pill under the product list */
+.nav-overlay__shop {
+  display: inline-flex;
+  align-items: center;
+  gap: 12px;
+  margin: 0 0 40px;
+  padding: 15px 38px;
+  border: none;
+  border-radius: 999px;
+  background: #f4efe6;
+  color: var(--green);
+  font-family: 'Poppins', sans-serif;
+  font-size: clamp(15px, 1.6vw, 17px);
+  font-weight: 500;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.2s, transform 0.2s;
+}
+.nav-overlay__shop svg { transition: transform 0.25s ease; }
+.nav-overlay__shop:hover { background: #fff; transform: translateY(-1px); }
+.nav-overlay__shop:hover svg { transform: translateX(4px); }
 
 /* "About Us" / "Contact Us" — large tan italic serif */
 .nav-overlay__page-link {
@@ -4952,6 +4982,7 @@ button {
   max-width: none;
   pointer-events: none;
   z-index: 2;
+  transform: scaleX(-1);               /* stem toward the screen edge */
 }
 
 .collection-intro .section-title {
@@ -5126,7 +5157,7 @@ button {
   top: calc(320 * var(--u));
   width: calc(580 * var(--u));
   max-width: none;
-  transform: scaleX(-1) rotate(-12deg);
+  transform: rotate(-12deg);           /* stem toward the screen edge */
   pointer-events: none;
 }
 
@@ -5310,4 +5341,25 @@ button {
   }
   .shop-showcase__card-name     { color: var(--green); font-size: 16px; }
   .shop-showcase__card-material { opacity: 0.6; }
+}
+
+/* Leaf sway — a slow breeze. Uses the separate `rotate` property so it
+   stacks on each leaf's own mirror/tilt transform. Each leaf pivots near
+   its stem (toward the screen edge); different durations keep the two
+   from moving in sync. */
+@keyframes leaf-sway {
+  from { rotate: -4deg; }
+  to   { rotate: 3deg; }
+}
+.collection-intro__leaf {
+  transform-origin: 80% 75%;
+  animation: leaf-sway 5.5s ease-in-out infinite alternate;
+}
+.craft__leaf {
+  transform-origin: 20% 75%;
+  animation: leaf-sway 6.5s ease-in-out -2s infinite alternate;
+}
+@media (prefers-reduced-motion: reduce) {
+  .collection-intro__leaf,
+  .craft__leaf { animation: none; }
 }
