@@ -30,10 +30,10 @@ export default function ShopPage() {
         />
         <div className="shop-banner__container">
           <div className="shop-banner__text">
-            <h1 className="shop-banner__heading">High-End Furniture</h1>
+            <h1 className="shop-banner__heading">Timeless Pieces, Distinctive Spaces</h1>
             <p className="shop-banner__sub">
-              What matters to us is timeless design,<br />
-              sustainable quality and ecological awareness.
+              Explore a curated collection of furniture and<br />
+               accents, where thoughtful design meets enduring elegance.
             </p>
           </div>
           <img src="/assets/Group9-with-items.png" alt="Coffee Table" className="shop-banner__chair" />
