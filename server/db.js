@@ -37,8 +37,12 @@ export const SCHEMA = `
     weight            TEXT,
     description       TEXT,
     short_description TEXT,
+    active            BOOLEAN NOT NULL DEFAULT true,
     created_at        TIMESTAMPTZ DEFAULT now()
   );
+
+  -- Inactive products are hidden from the public site but kept for admin.
+  ALTER TABLE products ADD COLUMN IF NOT EXISTS active BOOLEAN NOT NULL DEFAULT true;
 
   -- Uploaded images live in the database (data/mime) because Vercel
   -- functions cannot write to disk. Rows without data point at files

@@ -429,3 +429,36 @@
   justify-content: flex-end;
   padding-top: 8px;
 }
+
+/* Active / Inactive switch in the products table */
+.admin-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 12px;
+  border: 1px solid #d9d9d6;
+  border-radius: 999px;
+  background: #f4f4f2;
+  color: #8a8a86;
+  font-size: 12px;
+  font-weight: 500;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.2s, border-color 0.2s, color 0.2s;
+}
+.admin-status__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #b9b9b5;
+}
+.admin-status--on {
+  background: #eef3ea;
+  border-color: #c5d6bb;
+  color: #47593d;
+}
+.admin-status--on .admin-status__dot { background: #5d8a45; }
+.admin-status:hover { border-color: #47593d; }
+
+/* Hidden products stay listed but read as switched off */
+.admin-table__row--inactive td:not(:nth-last-child(-n+2)) { opacity: 0.45; }

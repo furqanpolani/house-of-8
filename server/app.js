@@ -2,15 +2,12 @@ import express from 'express';
 import productsRouter from './routes/products.js';
 import ordersRouter from './routes/orders.js';
 import { query } from './db.js';
+import { isAdmin } from './auth.js';
 
 const ADMIN_PASSWORD = process.env.ADMIN_PASSWORD;
 
 const app = express();
 app.use(express.json());
-
-function isAdmin(req) {
-  return Boolean(ADMIN_PASSWORD) && req.headers['x-admin-token'] === ADMIN_PASSWORD;
-}
 
 // Uploaded product images, stored in Postgres. Images shipped in
 // public/uploads are served as static files before reaching this route.

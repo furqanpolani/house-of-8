@@ -2,6 +2,7 @@ import express from 'express';
 import multer from 'multer';
 import path from 'path';
 import { query } from '../db.js';
+import { isAdmin } from '../auth.js';
 
 const router = express.Router();
 
@@ -12,7 +13,7 @@ const upload = multer({ storage: multer.memoryStorage(), limits: { fileSize: 4 *
 const SELECT_PRODUCTS = `
   SELECT p.id, p.name, p.category, p.material, p.price, p.rating, p.image,
          p.finish, p.dimensions, p.weight, p.description,
-         p.short_description AS "shortDescription", p.created_at,
+         p.short_description AS "shortDescription", p.active, p.created_at,
          COALESCE(
            json_agg(json_build_object('id', i.id, 'filename', i.filename, 'is_primary', i.is_primary)
                     ORDER BY i.is_primary DESC, i.id ASC)
@@ -44,23 +45,37 @@ const TEXT_FIELDS = {
   description: 'description', shortDescription: 'short_description',
 };
 
-// GET /api/products — optionally filter by category
+// GET /api/products — optionally filter by category. The public site only
+// sees active products; the admin (with its token) sees everything.
 router.get('/', async (req, res) => {
   const { category } = req.query;
-  const filter = category && category !== 'See All';
+  const where = [], params = [];
+  if (!isAdmin(req)) where.push('p.active');
+  if (category && category !== 'See All') {
+    params.push(category);
+    where.push(`p.category = $${params.length}`);
+  }
   const { rows } = await query(
-    `${SELECT_PRODUCTS} ${filter ? 'WHERE p.category = $1' : ''}
+    `${SELECT_PRODUCTS} ${where.length ? 'WHERE ' + where.join(' AND ') : ''}
      GROUP BY p.id ORDER BY p.created_at DESC, p.id DESC`,
-    filter ? [category] : []
+    params
   );
   res.json(rows);
 });
 
-// GET /api/products/:id
+// GET /api/products/:id — inactive products look missing to the public.
 router.get('/:id', async (req, res) => {
   const product = await findProduct(req.params.id);
-  if (!product) return res.status(404).json({ error: 'Not found' });
+  if (!product || (!product.active && !isAdmin(req))) return res.status(404).json({ error: 'Not found' });
   res.json(product);
+});
+
+// PATCH /api/products/:id/active — admin: show or hide on the site
+router.patch('/:id/active', async (req, res) => {
+  if (typeof req.body?.active !== 'boolean') return res.status(400).json({ error: 'active must be true or false' });
+  const { rowCount } = await query('UPDATE products SET active = $1 WHERE id = $2', [req.body.active, req.params.id]);
+  if (rowCount === 0) return res.status(404).json({ error: 'Not found' });
+  res.json(await findProduct(req.params.id));
 });
 
 // POST /api/products — create

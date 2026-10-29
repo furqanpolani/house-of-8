@@ -19,7 +19,8 @@ export default function AdminDashboard() {
 
   async function loadProducts() {
     setLoading(true);
-    const res  = await fetch('/api/products');
+    // The token makes the API include inactive products.
+    const res  = await fetch('/api/products', { headers: { 'x-admin-token': token } });
     const data = await res.json();
     setProducts(data);
     setLoading(false);
@@ -36,6 +37,17 @@ export default function AdminDashboard() {
     });
     setShowForm(false);
     setEditProduct(null);
+  }
+
+  async function toggleActive(p) {
+    const res = await fetch(`/api/products/${p.id}/active`, {
+      method: 'PATCH',
+      headers: { 'Content-Type': 'application/json', 'x-admin-token': token },
+      body: JSON.stringify({ active: !p.active }),
+    });
+    if (!res.ok) { window.alert('Could not update the product. Please try again.'); return; }
+    const updated = await res.json();
+    setProducts(prev => prev.map(x => x.id === updated.id ? updated : x));
   }
 
   async function handleDelete(id) {
@@ -73,7 +85,7 @@ export default function AdminDashboard() {
           <div className="admin-topbar">
             <div>
               <h1>Products</h1>
-              <p>{products.length} total</p>
+              <p>{products.length} total · {products.filter(p => p.active).length} active</p>
             </div>
             <button className="admin-btn admin-btn--primary" onClick={() => { setEditProduct(null); setShowForm(true); }}>
               + Add Product
@@ -100,12 +112,12 @@ export default function AdminDashboard() {
                 <thead>
                   <tr>
                     <th>Image</th><th>Name</th><th>Category</th>
-                    <th>Material</th><th>Price</th><th>Rating</th><th>Actions</th>
+                    <th>Material</th><th>Price</th><th>Rating</th><th>Status</th><th>Actions</th>
                   </tr>
                 </thead>
                 <tbody>
                   {products.map(p => (
-                    <tr key={p.id}>
+                    <tr key={p.id} className={p.active ? '' : 'admin-table__row--inactive'}>
                       <td>
                         <div className="admin-table__thumb">
                           {(() => {
@@ -124,6 +136,16 @@ export default function AdminDashboard() {
                       <td>PKR {Number(p.price).toLocaleString('en-PK')}</td>
                       <td>{'★'.repeat(Math.round(p.rating))} ({p.rating})</td>
                       <td>
+                        <button
+                          className={`admin-status${p.active ? ' admin-status--on' : ''}`}
+                          onClick={() => toggleActive(p)}
+                          title={p.active ? 'Visible on the site — click to hide' : 'Hidden from the site — click to show'}
+                        >
+                          <span className="admin-status__dot" />
+                          {p.active ? 'Active' : 'Inactive'}
+                        </button>
+                      </td>
+                      <td>
                         <div className="admin-table__actions">
                           <button className="admin-btn admin-btn--sm" onClick={() => { setEditProduct(p); setShowForm(true); }}>Edit</button>
                           <button className="admin-btn admin-btn--sm admin-btn--danger" onClick={() => handleDelete(p.id)}>Delete</button>
@@ -132,7 +154,7 @@ export default function AdminDashboard() {
                     </tr>
                   ))}
                   {products.length === 0 && (
-                    <tr><td colSpan="7" style={{ textAlign: 'center', padding: 40, color: '#9c9c9c' }}>No products yet.</td></tr>
+                    <tr><td colSpan="8" style={{ textAlign: 'center', padding: 40, color: '#9c9c9c' }}>No products yet.</td></tr>
                   )}
                 </tbody>
               </table>
