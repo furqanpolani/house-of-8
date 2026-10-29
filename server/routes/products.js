@@ -39,6 +39,16 @@ async function syncPrimary(productId) {
   );
 }
 
+// Public reads are cached on Vercel's CDN for 15s so traffic bursts don't
+// each open a database connection (the plan allows only 20). Admin reads
+// are never cached; the dashboard also uses its own URL (?all=1) so it
+// can't be served a cached public list.
+function setCache(req, res) {
+  res.set('Cache-Control', isAdmin(req)
+    ? 'no-store'
+    : 'public, max-age=0, s-maxage=15, stale-while-revalidate=60');
+}
+
 // Text fields the admin can set; maps request body keys to columns.
 const TEXT_FIELDS = {
   material: 'material', finish: 'finish', dimensions: 'dimensions', weight: 'weight',
@@ -48,6 +58,7 @@ const TEXT_FIELDS = {
 // GET /api/products — optionally filter by category. The public site only
 // sees active products; the admin (with its token) sees everything.
 router.get('/', async (req, res) => {
+  setCache(req, res);
   const { category } = req.query;
   const where = [], params = [];
   if (!isAdmin(req)) where.push('p.active');
@@ -65,6 +76,7 @@ router.get('/', async (req, res) => {
 
 // GET /api/products/:id — inactive products look missing to the public.
 router.get('/:id', async (req, res) => {
+  setCache(req, res);
   const product = await findProduct(req.params.id);
   if (!product || (!product.active && !isAdmin(req))) return res.status(404).json({ error: 'Not found' });
   res.json(product);

@@ -20,7 +20,7 @@ export default function AdminDashboard() {
   async function loadProducts() {
     setLoading(true);
     // The token makes the API include inactive products.
-    const res  = await fetch('/api/products', { headers: { 'x-admin-token': token } });
+    const res  = await fetch('/api/products?all=1', { headers: { 'x-admin-token': token } });
     const data = await res.json();
     setProducts(data);
     setLoading(false);

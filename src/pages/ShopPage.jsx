@@ -40,7 +40,8 @@ export default function ShopPage() {
         </div>
       </section>
 
-      {/* ── FILTER BAR ── */}
+      {/* ── FILTER BAR ── hidden while the catalogue has few categories.
+          Restore by removing this comment wrapper.
       <div className="filter-bar">
         <div className="filter-bar__inner">
           <div className="filter-bar__categories">
@@ -65,6 +66,7 @@ export default function ShopPage() {
           </div>
         </div>
       </div>
+      */}
 
       {/* ── PRODUCT GRID ── */}
       <main className="shop-grid-section">
