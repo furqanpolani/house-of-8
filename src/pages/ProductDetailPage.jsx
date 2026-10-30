@@ -265,10 +265,12 @@ export default function ProductDetailPage() {
           <p className="pd-price">PKR {price}</p>
           <p className="pd-ref">{refCode}</p>
 
+          {/* Colour swatches hidden — products don't have colour options yet.
           <div className="pd-swatches">
             <button className="pd-swatch pd-swatch--stone pd-swatch--active" aria-label="Stone" />
             <button className="pd-swatch pd-swatch--walnut" aria-label="Walnut" />
           </div>
+          */}
 
           <p className="pd-desc">
             {product.shortDescription ||

@@ -41,10 +41,11 @@ async function syncPrimary(productId) {
 
 // Public reads are cached on Vercel's CDN for 15s so traffic bursts don't
 // each open a database connection (the plan allows only 20). Admin reads
-// are never cached; the dashboard also uses its own URL (?all=1) so it
-// can't be served a cached public list.
+// are never cached, and nothing under the dashboard's URL (?all=1) is
+// cached either — otherwise an unauthenticated hit on that URL would put a
+// public list in the cache for the admin to receive.
 function setCache(req, res) {
-  res.set('Cache-Control', isAdmin(req)
+  res.set('Cache-Control', isAdmin(req) || 'all' in req.query
     ? 'no-store'
     : 'public, max-age=0, s-maxage=15, stale-while-revalidate=60');
 }

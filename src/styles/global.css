@@ -4094,6 +4094,13 @@ button {
   .pd-info-panel    { padding: 26px 20px 40px; }
 }
 
+/* Mobile/tablet: Order Now and Add to Basket span the full content width. */
+@media (max-width: 900px) {
+  .pd-order-btn,
+  .pd-basket-btn { width: 100%; }
+  .pd-basket-label { white-space: nowrap; }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .pd-gallery-track { transition: none; }
 }
